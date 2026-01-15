@@ -96,20 +96,18 @@
 
 % Custom Commands
 \newcommand{\myTitle}[1]{\def\@myTitle{#1}}
-\newcommand{\myName}[1]{\def\@myName{#1}}
-\newcommand{\myNIM}[1]{\def\@myNIM{#1}}
-\newcommand{\myNameTwo}[1]{\def\@myNameTwo{#1}}
-\newcommand{\myNIMTwo}[1]{\def\@myNIMTwo{#1}}
+\newcommand{\myAuthorOne}[2]{\def\@myNameOne{#1}\def\@myNIMOne{#2}}
+\newcommand{\myAuthorTwo}[2]{\def\@myNameTwo{#1}\def\@myNIMTwo{#2}}
 \newcommand{\myYear}[1]{\def\@myYear{#1}}
 
 % Redefine title
 \makeatletter
 % Initialize default values
-\def\@myTitle{Judul Penelitian}
-\def\@myNIM{714240056}
-\def\@myName{Ismi Nabilah}
-\def\@myNIMTwo{714240011}
+\def\@myTitle{IMPLEMENTASI SISTEM POS BERBASIS WEB UNTUK OPTIMALISASI EFISIENSI OPERASIONAL PADA USAHA LAUNDRY}
+\def\@myNameOne{Ismi Nabilah}
+\def\@myNIMOne{714240056}
 \def\@myNameTwo{Alifya Azzahra}
+\def\@myNIMTwo{714240011}
 \def\@myYear{2026}
 
 \renewcommand{\maketitle}{
@@ -117,52 +115,60 @@
         \centering
         \vspace*{0.5cm}
         
-        % Judul Penelitian (bagian atas)
-        {\fontsize{16}{20}\selectfont
-        \textbf{Judul Laporan yang Akan di Laporkan}\par}
+        % Judul Penelitian
+        {\fontsize{14}{16}\selectfont\bfseries
+        \@myTitle\par}
         
         \vspace{1.5cm}
         
-        % Tahap Ujian Kualifikasi
+        % Jenis Laporan
         {\fontsize{12}{14}\selectfont
-        \textbf{Proyek / Internship}\par}
-        
-        \vspace{1.5cm}
-        
-        % NIM dan Nama (Penulis 1 dan 2)
-        {\fontsize{12}{14}\selectfont
-        \textbf{\@myNIM}\par
-        \textbf{\@myName}\par
+        \textbf{LAPORAN PROYEK II}\par}
         \vspace{0.5cm}
-        \textbf{\@myNIMTwo}\par
-        \textbf{\@myNameTwo}\par}
+        {\fontsize{12}{14}\selectfont
+        Diajukan untuk Memenuhi Kelulusan Matakuliah Proyek 2 pada Program Studi DIV Teknik Informatika\par}
         
         \vspace{1.5cm}
-        \vspace{1.5cm}
-        \vspace{1.5cm}
-     
         
         % Logo
         \IfFileExists{logo.png}{
-            \includegraphics[width=0.5\textwidth]{logo.png}
+            \includegraphics[width=0.4\textwidth]{logo.png}
         }{
             {\fontsize{16}{19}\bfseries Logo\par}
         }
+
+        \vspace{1.5cm}
+        
+        % Penulis
+        {\fontsize{12}{14}\selectfont
+        \textbf{DISUSUN OLEH :}\par}
+        \vspace{0.5cm}
+        
+        \begin{tabular}{ll}
+            \textbf{\@myNIMOne} & \textbf{\@myNameOne} \\
+            \textbf{\@myNIMTwo} & \textbf{\@myNameTwo}
+        \end{tabular}\par
         
         \vfill
         
         % Program Studi dan Informasi
-        {\fontsize{16}{19}\selectfont
-        \textbf{Program Studi Sarjana Terapan Teknik Informatika}\par
-        \textbf{Sekolah Teknologi Informasi}\par
-        \textbf{Universitas Logistik dan Bisnis Internasional}\par
-        \textbf{Bandung}\par
-        \textbf{2026}\par}
+        {\fontsize{14}{16}\selectfont\bfseries
+        PROGRAM STUDI DIV TEKNIK INFORMATIKA\par
+        SEKOLAH VOKASI\par
+        UNIVERSITAS LOGISTIK DAN BISNIS INTERNASIONAL\par
+        BANDUNG\par
+        \@myYear\par}
         
     \end{titlepage}
     \newpage
 }
 \makeatother
+
+% Set Metadata
+\myTitle{IMPLEMENTASI SISTEM POS BERBASIS WEB UNTUK OPTIMALISASI EFISIENSI OPERASIONAL PADA USAHA LAUNDRY}
+\myAuthorOne{Ismi Nabilah}{714240056}
+\myAuthorTwo{Alifya Azzahra}{714240011}
+\myYear{2026}
 
 % SOTA Table Environment
 \newenvironment{sototable}
@@ -237,13 +243,11 @@
 
 
 
-% Set document metadata
-\myTitle{Judul Penelitian Anda}
-\myNIM{303012510004}
-\myName{Ismi Nabilah}
-\myNIMTwo{303012510005}
-\myNameTwo{Nama Teman}
-\myYear{2026}
+% Set document metadata (sudah dipindahkan ke baris 170-173, hapus duplikat ini)
+% \myTitle{IMPLEMENTASI SISTEM POS BERBASIS WEB UNTUK OPTIMALISASI EFISIENSI OPERASIONAL PADA USAHA LAUNDRY}
+% \myAuthorOne{Ismi Nabilah}{714240056}
+% \myAuthorTwo{Alifya Azzahra}{714240011}
+% \myYear{2026}
 
 % Beginning of Document
 \begin{document}
