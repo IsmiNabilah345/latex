@@ -12,7 +12,6 @@
 \usepackage{courier}  % Courier for monospace
 \usepackage{helvet}   % Helvetica for sans-serif
 \usepackage{amsmath}
-\usepackage[english,indonesian]{babel}
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage{titlesec}
@@ -99,15 +98,19 @@
 \newcommand{\myTitle}[1]{\def\@myTitle{#1}}
 \newcommand{\myName}[1]{\def\@myName{#1}}
 \newcommand{\myNIM}[1]{\def\@myNIM{#1}}
+\newcommand{\myNameTwo}[1]{\def\@myNameTwo{#1}}
+\newcommand{\myNIMTwo}[1]{\def\@myNIMTwo{#1}}
 \newcommand{\myYear}[1]{\def\@myYear{#1}}
 
 % Redefine title
 \makeatletter
 % Initialize default values
 \def\@myTitle{Judul Penelitian}
-\def\@myNIM{303012510004}
-\def\@myName{Rolly Maulana Awangga}
-\def\@myYear{Tahun}
+\def\@myNIM{714240056}
+\def\@myName{Ismi Nabilah}
+\def\@myNIMTwo{714240011}
+\def\@myNameTwo{Alifya Azzahra}
+\def\@myYear{2026}
 
 \renewcommand{\maketitle}{
     \begin{titlepage}
@@ -126,10 +129,13 @@
         
         \vspace{1.5cm}
         
-        % NIM dan Nama
+        % NIM dan Nama (Penulis 1 dan 2)
         {\fontsize{12}{14}\selectfont
         \textbf{\@myNIM}\par
-        \textbf{\@myName}\par}
+        \textbf{\@myName}\par
+        \vspace{0.5cm}
+        \textbf{\@myNIMTwo}\par
+        \textbf{\@myNameTwo}\par}
         
         \vspace{1.5cm}
         \vspace{1.5cm}
@@ -234,7 +240,9 @@
 % Set document metadata
 \myTitle{Judul Penelitian Anda}
 \myNIM{303012510004}
-\myName{Rolly Maulana Awangga}
+\myName{Ismi Nabilah}
+\myNIMTwo{303012510005}
+\myNameTwo{Nama Teman}
 \myYear{2026}
 
 % Beginning of Document
