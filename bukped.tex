@@ -28,12 +28,12 @@
 \usepackage{longtable}
 \usepackage{ragged2e}  % For better text justification in bibliography
 
-% Page Setup
+% Page Setup - Sesuai ketentuan universitas
 \geometry{
     top=3cm,
     bottom=3cm,
     left=4cm,
-    right=3cm
+    right=2.5cm
 }
 
 % Title Formatting
@@ -153,7 +153,7 @@
         
         % Program Studi dan Informasi
         {\fontsize{14}{16}\selectfont\bfseries
-        PROGRAM STUDI DIV TEKNIK INFORMATIKA\par
+        PROGRAM STUDI D IV TEKNIK INFORMATIKA\par
         SEKOLAH VOKASI\par
         UNIVERSITAS LOGISTIK DAN BISNIS INTERNASIONAL\par
         BANDUNG\par
@@ -260,22 +260,45 @@
 % Use Times New Roman as default font
 \rmfamily
 
-% Title Page
+% ============================================================================
+% HALAMAN JUDUL
+% ============================================================================
 \maketitle
 
-% Halaman Depan menggunakan angka Romawi
+% ============================================================================
+% FRONT MATTER - Menggunakan penomoran Romawi kecil (i, ii, iii, ...)
+% ============================================================================
 \pagenumbering{roman}
+\setcounter{page}{1}
+
+% LEMBAR PENGESAHAN
+\input{chapters/frontmatter/lembar_pengesahan}
+\clearpage
+
+% SURAT PERNYATAAN TIDAK PLAGIARISME - Ismi Nabilah
+\input{chapters/frontmatter/pernyataan_ismi}
+\clearpage
+
+% SURAT PERNYATAAN TIDAK PLAGIARISME - Alifya Azzahra
+\input{chapters/frontmatter/pernyataan_alifya}
+\clearpage
+
+% ABSTRAK (Bahasa Indonesia)
+\input{chapters/frontmatter/abstrak}
+\clearpage
+
+% ABSTRACT (English)
+\input{chapters/frontmatter/abstract}
+\clearpage
+
+% KATA PENGANTAR
+\input{chapters/frontmatter/kata_pengantar}
+\clearpage
 
 % DAFTAR ISI
 \phantomsection
 \addcontentsline{toc}{section}{DAFTAR ISI}
 \tableofcontents
-\clearpage
-
-% DAFTAR TABEL
-\phantomsection
-\addcontentsline{toc}{section}{DAFTAR TABEL}
-\listoftables
 \clearpage
 
 % DAFTAR GAMBAR
@@ -284,65 +307,125 @@
 \listoffigures
 \clearpage
 
-% DAFTAR RUMUS
+% DAFTAR TABEL
 \phantomsection
-\addcontentsline{toc}{section}{DAFTAR RUMUS}
-\listofequations
+\addcontentsline{toc}{section}{DAFTAR TABEL}
+\listoftables
 \clearpage
 
-% RINGKASAN
-\clearpage
-\section*{RINGKASAN}
-\phantomsection
-\addcontentsline{toc}{section}{RINGKASAN}
-\input{chapters/ringkasan}
+% ============================================================================
+% MAIN CONTENT - Penomoran per bab (I-1, II-1, dst)
+% ============================================================================
 
-\clearpage
+% Setup header/footer untuk halaman bab
+\fancypagestyle{chapterfirst}{
+    \fancyhf{}
+    \fancyfoot[C]{\thesection-\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{chapterrest}{
+    \fancyhf{}
+    \fancyhead[R]{\thesection-\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
 
 % BAB 1 - PENDAHULUAN
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \setcounter{section}{0}
-\pagenumbering{arabic} % Kembali ke angka Arab mulai dari Bab 1
-\setcounter{page}{1}   % Reset halaman ke 1
-\section*{BAB 1 \\ PENDAHULUAN}
-\phantomsection
-\addcontentsline{toc}{section}{BAB 1 PENDAHULUAN}
 \refstepcounter{section}
+\renewcommand{\thepage}{\Roman{section}-\arabic{page}}
+
+\thispagestyle{chapterfirst}
+\pagestyle{chapterrest}
+
+\section*{BAB \Roman{section} \\ PENDAHULUAN}
+\phantomsection
+\addcontentsline{toc}{section}{BAB \Roman{section} PENDAHULUAN}
 
 \input{chapters/bab1}
 
+% BAB 2 - LANDASAN TEORI
 \clearpage
-
-% BAB 2 - LITERATURE REVIEW
-\section*{BAB 2 \\ LITERATURE REVIEW}
-\phantomsection
-\addcontentsline{toc}{section}{BAB 2 LITERATURE REVIEW}
+\setcounter{page}{1}
 \refstepcounter{section}
+
+\thispagestyle{chapterfirst}
+\pagestyle{chapterrest}
+
+\section*{BAB \Roman{section} \\ LANDASAN TEORI}
+\phantomsection
+\addcontentsline{toc}{section}{BAB \Roman{section} LANDASAN TEORI}
 
 \input{chapters/bab2}
 
+% BAB 3 - ANALISIS PERANCANGAN
 \clearpage
-
-% BAB 3 - TEORI / METODE TERKAIT
-\section*{BAB 3 \\ TEORI / METODE TERKAIT}
-\phantomsection
-\addcontentsline{toc}{section}{BAB 3 TEORI / METODE TERKAIT}
+\setcounter{page}{1}
 \refstepcounter{section}
+
+\thispagestyle{chapterfirst}
+\pagestyle{chapterrest}
+
+\section*{BAB \Roman{section} \\ ANALISIS PERANCANGAN}
+\phantomsection
+\addcontentsline{toc}{section}{BAB \Roman{section} ANALISIS PERANCANGAN}
 
 \input{chapters/bab3}
 
+% BAB 4 - IMPLEMENTASI DAN PENGUJIAN
+\clearpage
+\setcounter{page}{1}
+\refstepcounter{section}
+
+\thispagestyle{chapterfirst}
+\pagestyle{chapterrest}
+
+\section*{BAB \Roman{section} \\ IMPLEMENTASI DAN PENGUJIAN}
+\phantomsection
+\addcontentsline{toc}{section}{BAB \Roman{section} IMPLEMENTASI DAN PENGUJIAN}
+
+\input{chapters/bab4}
+
+% BAB 5 - KESIMPULAN DAN SARAN
+\clearpage
+\setcounter{page}{1}
+\refstepcounter{section}
+
+\thispagestyle{chapterfirst}
+\pagestyle{chapterrest}
+
+\section*{BAB \Roman{section} \\ KESIMPULAN DAN SARAN}
+\phantomsection
+\addcontentsline{toc}{section}{BAB \Roman{section} KESIMPULAN DAN SARAN}
+
+\input{chapters/bab5}
+
+% ============================================================================
+% BACK MATTER
+% ============================================================================
+
 % DAFTAR PUSTAKA
 \clearpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+
 \section*{DAFTAR PUSTAKA}
 \phantomsection
 \addcontentsline{toc}{section}{DAFTAR PUSTAKA}
 
 \printbibliography[heading=none]
 
+% LAMPIRAN
 \clearpage
-
-
+\setcounter{page}{1}
 \input{chapters/lampiran}
 
+% GLOSARIUM
 \clearpage
+\setcounter{page}{1}
+\input{chapters/backmatter/glosarium}
 
 \end{document}
