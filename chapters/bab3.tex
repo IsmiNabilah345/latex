@@ -3,16 +3,76 @@
 % Ganti dengan konten dari laporan Word kamu
 % Biasanya berisi analisis sistem dan perancangan
 
-\subsection{Analisis Sistem}
-[Isi analisis sistem di sini]
+\subsection{Analisis}
+\subsubsection{Analisis Fungsi Fungsional}
+\indent
+Analisis fungsional dilakukan untuk mengidentifikasi kebutuhan utama sistem POS Laundry berbasis web. Sistem ini dirancang agar dapat menggantikan pencatatan manual dengan menyediakan fitur inti sebagai berikut:
 
-\subsection{Perancangan Sistem}
-[Isi perancangan sistem di sini]
+\begin{itemize}
+    \item Transaksi Laundry: mencatat pesanan pelanggan, jenis layanan (cuci, setrika, paket), jumlah, harga, dan status cucian.
+    \item Manajemen Pelanggan: menyimpan data pelanggan, riwayat transaksi, serta mempermudah pencarian informasi.
+    \item Laporan Operasional dan Keuangan: menghasilkan laporan harian, mingguan, dan bulanan terkait jumlah transaksi, pendapatan, serta status cucian.
+    \item Pengelolaan Status Cucian: menampilkan status cucian (proses, selesai, diambil) secara real time.
+\end{itemize}
 
-\subsubsection{Perancangan Database}
-[Isi perancangan database di sini]
+\noindent
+Fungsi fungsi ini mendukung tujuan sistem untuk meningkatkan efisiensi, akurasi pencatatan, dan transparansi layanan.
 
-\subsubsection{Perancangan Interface}
-[Isi perancangan interface di sini]
 
-% Tambahkan subsection lain sesuai kebutuhan
+\subsubsection{Analisis Non Fungsional}
+\indent
+Selain kebutuhan fungsional, sistem juga harus memenuhi kebutuhan non fungsional agar dapat digunakan secara optimal:
+
+\begin{itemize}
+    \item Keamanan Data: sistem harus melindungi data pelanggan dan transaksi dari akses tidak sah.
+    \item Kinerja Sistem: aplikasi harus mampu memproses transaksi dengan cepat dan stabil.
+    \item Usability: antarmuka harus sederhana, responsif, dan mudah dipahami oleh karyawan maupun pemilik.
+    \item Portabilitas: sistem berbasis web dapat diakses melalui berbagai perangkat (PC, laptop, smartphone).
+    \item Reliabilitas: sistem harus mampu beroperasi secara konsisten tanpa gangguan yang signifikan.
+\end{itemize}
+
+
+\subsection{Perancangan}
+\indent
+Tahap perancangan merupakan proses penerjemahan hasil analisis kebutuhan ke dalam bentuk rancangan teknis yang akan digunakan sebagai acuan dalam pengembangan sistem POS Laundry berbasis web. Perancangan ini mencakup struktur menu, desain antarmuka pengguna, perancangan basis data, serta logika fungsi yang mendukung operasional laundry secara digital.
+
+\indent
+Tujuan utama dari perancangan adalah memastikan bahwa sistem yang dibangun sesuai dengan kebutuhan fungsional dan non fungsional yang telah diidentifikasi sebelumnya. Dengan rancangan yang terstruktur, pengembangan sistem dapat dilakukan secara efisien, terarah, dan minim risiko kesalahan implementasi. Setiap komponen yang dirancang baik dari sisi tampilan maupun proses internal harus mampu mendukung pencatatan transaksi, pengelolaan pelanggan, dan penyusunan laporan secara akurat dan real time.
+
+
+\subsubsection{Usecase Diagram}
+[gambar usecase]
+
+
+\subsubsection{Antarmuka (UI)}
+\indent
+Desain antarmuka yang dirancang menggunakan prinsip responsif dan sederhana agar mudah digunakan oleh pengguna, baik melalui komputer maupun smartphone. Berdasarkan analisis kebutuhan, berikut adalah komponen utama dari antarmuka yang dirancang:
+
+\begin{enumerate}
+    \item Halaman Login: Proses login melibatkan pengisian formulir terautentikasi untuk mendapatkan akses ke sistem yang memisahkan administrator dan pengguna.
+    \item Dashboard Admin: Area admin utama dengan menu navigasi untuk melihat data pengguna, data laundry, dan ringkasan laporan keuangan serta kinerja bisnis.
+    \item Dashboard Kasir: Ruang kerja utama untuk Kasir yang menyediakan fitur cepat untuk memasukkan transaksi baru, memeriksa status pelanggan, dan menganalisis data pelanggan.
+    \item Halaman Transaksi: Antarmuka untuk menentukan jenis layanan laundry (kiloan/satuan), menghitung total biaya secara otomatis, dan memproses pembayaran.
+    \item truk Transaksi:Tampilan bukti pembayaran yang dapat dicetak atau dikirim secara digital kepada pelanggan berisi detail layanan dan total biaya.
+\end{enumerate}
+
+
+\subsubsection{Struktur Database}
+[gambar]
+
+\indent
+Berdasarkan gambar 3.2.3 diatas, sistem ini menggunakan tiga tabel utama yang saling berelasi untuk mengelola data operasional laundry:
+
+\begin{enumerate}
+    \item Tabel Pelanggan. Digunakan untuk menyimpan informasi identitas pelanggan seperti nama, alamat, telepon.
+    \item Tabel Layanan. Berisi daftar jenis jasa laundry yang ditawarkan, termasuk informasi seperti nama layanan, harga, satuan (misalnya per kg atau per potong), dan deskripsi.
+    \item Tabel Transaksi. Mencatat setiap pesanan yang dilakukan oleh pelanggan, termasuk total (biaya), status (status pengerjaan/pembayaran), dan berat (untuk laundry kiloan).
+\end{enumerate}
+
+
+\subsubsection{Algoritma fungsi}
+\indent
+Dalam pengembangan sistem point-of-sale laundry berbasis web ini, algoritma fungsional digunakan untuk menentukan logika bisnis utama, seperti total biaya berdasarkan berat atau kuantitas, pemantauan status cucian secara real-time, dan laporan keuangan otomatis. Algoritma ini digunakan untuk memastikan proses kerja sistematis, akurat, dan meminimalkan kesulitan yang terkait dengan pekerjaan manual.
+
+\subsubsection{Flowchart}
+[gambar]
