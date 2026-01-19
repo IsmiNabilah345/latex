@@ -280,37 +280,45 @@
 
 % LEMBAR PENGESAHAN
 \input{chapters/frontmatter/lembar_pengesahan}
+\addcontentsline{toc}{section}{LEMBAR PENGESAHAN}
 \clearpage
 
 % SURAT PERNYATAAN TIDAK PLAGIARISME - Ismi Nabilah
 \input{chapters/frontmatter/pernyataan_ismi}
+\addcontentsline{toc}{section}{SURAT PERNYATAAN TIDAK MELAKUKAN PLAGIARISME} 
 \clearpage
 
 % SURAT PERNYATAAN TIDAK PLAGIARISME - Alifya Azzahra
 \input{chapters/frontmatter/pernyataan_alifya}
+\addcontentsline{toc}{section}{SURAT PERNYATAAN TIDAK MELAKUKAN PLAGIARISME}
 \clearpage
 
 % ABSTRAK (Bahasa Indonesia)
 \input{chapters/frontmatter/abstrak}
+\addcontentsline{toc}{section}{ABSTRAK}
 \clearpage
 
 % ABSTRACT (English)
 \input{chapters/frontmatter/abstract}
+\addcontentsline{toc}{section}{ABSTRACT} 
 \clearpage
 
 % KATA PENGANTAR
 \input{chapters/frontmatter/kata_pengantar}
+\addcontentsline{toc}{section}{KATA PENGANTAR}
 \clearpage
 
 % DAFTAR ISI
 \phantomsection
 \addcontentsline{toc}{section}{DAFTAR ISI}
+\vspace{1cm}
 \tableofcontents
 \clearpage
 
 % DAFTAR GAMBAR
 \phantomsection
 \addcontentsline{toc}{section}{DAFTAR GAMBAR}
+\vspace{1cm}
 \listoffigures
 \clearpage
 
@@ -321,90 +329,59 @@
 \clearpage
 
 % ============================================================================
-% MAIN CONTENT - Penomoran per bab (I-1, II-1, dst)
+% MAIN CONTENT - Penomoran angka biasa (1, 2, 3...)
 % ============================================================================
 
-% Setup header/footer untuk halaman bab
-\fancypagestyle{chapterfirst}{
+% Setup agar nomor selalu di tengah bawah
+\fancypagestyle{plain}{
     \fancyhf{}
-    \fancyfoot[C]{\thesection-\thepage}
+    \fancyfoot[C]{\thepage}
     \renewcommand{\headrulewidth}{0pt}
 }
+\pagestyle{plain}
 
-\fancypagestyle{chapterrest}{
-    \fancyhf{}
-    \fancyhead[R]{\thesection-\thepage}
-    \renewcommand{\headrulewidth}{0pt}
-}
+% Mulai penomoran Arab dari angka 1
+\clearpage
+\pagenumbering{arabic} 
+\setcounter{page}{1}
 
 % BAB 1 - PENDAHULUAN
-\clearpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
-\setcounter{section}{0}
-\refstepcounter{section}
-\renewcommand{\thepage}{\Roman{section}-\arabic{page}}
-
-\thispagestyle{chapterfirst}
-\pagestyle{chapterrest}
-
+\setcounter{section}{1} % Set ke 1 untuk BAB I
 \section*{BAB \Roman{section} \\ PENDAHULUAN}
 \phantomsection
 \addcontentsline{toc}{section}{BAB \Roman{section} PENDAHULUAN}
-
 \input{chapters/bab1}
 
 % BAB 2 - LANDASAN TEORI
 \clearpage
-\setcounter{page}{1}
-\refstepcounter{section}
-
-\thispagestyle{chapterfirst}
-\pagestyle{chapterrest}
-
+\stepcounter{section} % Naik ke BAB II
 \section*{BAB \Roman{section} \\ LANDASAN TEORI}
 \phantomsection
 \addcontentsline{toc}{section}{BAB \Roman{section} LANDASAN TEORI}
-
 \input{chapters/bab2}
 
 % BAB 3 - ANALISIS PERANCANGAN
 \clearpage
-\setcounter{page}{1}
-\refstepcounter{section}
-
-\thispagestyle{chapterfirst}
-\pagestyle{chapterrest}
-
+\stepcounter{section} % Naik ke BAB III
 \section*{BAB \Roman{section} \\ ANALISIS PERANCANGAN}
 \phantomsection
 \addcontentsline{toc}{section}{BAB \Roman{section} ANALISIS PERANCANGAN}
-
 \input{chapters/bab3}
 
 % BAB 4 - IMPLEMENTASI DAN PENGUJIAN
 \clearpage
-\refstepcounter{section}
-\setcounter{figure}{0}    
-
+\stepcounter{section} % Naik ke BAB IV
 \section*{BAB \Roman{section} \\ IMPLEMENTASI DAN PENGUJIAN}
 \phantomsection
 \addcontentsline{toc}{section}{BAB \Roman{section} IMPLEMENTASI DAN PENGUJIAN}
-
 \input{chapters/bab4}
 
 % BAB 5 - KESIMPULAN DAN SARAN
 \clearpage
-\setcounter{page}{1}
-\refstepcounter{section}
-
-\thispagestyle{chapterfirst}
-\pagestyle{chapterrest}
-
+\stepcounter{section} % Naik ke BAB V
 \section*{BAB \Roman{section} \\ KESIMPULAN DAN SARAN}
 \phantomsection
 \addcontentsline{toc}{section}{BAB \Roman{section} KESIMPULAN DAN SARAN}
-
 \input{chapters/bab5}
 
 % ============================================================================
@@ -413,23 +390,19 @@
 
 % DAFTAR PUSTAKA
 \clearpage
-\setcounter{page}{1}
-\pagestyle{fancy}
-
 \section*{DAFTAR PUSTAKA}
+
+\vspace{1cm}
 \phantomsection
 \addcontentsline{toc}{section}{DAFTAR PUSTAKA}
-
 \printbibliography[heading=none]
 
 % LAMPIRAN
 \clearpage
-\setcounter{page}{1}
 \input{chapters/lampiran}
 
 % GLOSARIUM
 \clearpage
-\setcounter{page}{1}
 \input{chapters/backmatter/glosarium}
 
 \end{document}
