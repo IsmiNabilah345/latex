@@ -16,6 +16,7 @@
 \usepackage{setspace}
 \usepackage{titlesec}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{array}
@@ -29,6 +30,10 @@
 \usepackage{ragged2e}  % For better text justification in bibliography
 \usepackage{indentfirst} % Menarik paragraf pertama agar menjorok
 \setlength{\parindent}{1cm} % Mengatur jarak menjoroknya (silakan sesuaikan ukurannya)
+\renewcommand{\figurename}{Gambar}
+\usepackage{chngcntr}
+\renewcommand{\thefigure}{\Roman{section}.\arabic{figure}}
+\usepackage{fancyvrb}
 
 % Page Setup - Sesuai ketentuan universitas
 \geometry{
@@ -379,11 +384,8 @@
 
 % BAB 4 - IMPLEMENTASI DAN PENGUJIAN
 \clearpage
-\setcounter{page}{1}
 \refstepcounter{section}
-
-\thispagestyle{chapterfirst}
-\pagestyle{chapterrest}
+\setcounter{figure}{0}    
 
 \section*{BAB \Roman{section} \\ IMPLEMENTASI DAN PENGUJIAN}
 \phantomsection

@@ -1,8 +1,6 @@
 % BAB 3 - ANALISIS PERANCANGAN
 
-% Ganti dengan konten dari laporan Word kamu
-% Biasanya berisi analisis sistem dan perancangan
-
+\vspace{1cm}
 \subsection{Analisis}
 \subsubsection{Analisis Fungsi Fungsional}
 \indent
@@ -68,6 +66,11 @@ Berdasarkan gambar 3.2.3 diatas, sistem ini menggunakan tiga tabel utama yang sa
     \item Tabel Layanan. Berisi daftar jenis jasa laundry yang ditawarkan, termasuk informasi seperti nama layanan, harga, satuan (misalnya per kg atau per potong), dan deskripsi.
     \item Tabel Transaksi. Mencatat setiap pesanan yang dilakukan oleh pelanggan, termasuk total (biaya), status (status pengerjaan/pembayaran), dan berat (untuk laundry kiloan).
 \end{enumerate}
+\indent
+Selain tabel utama, sistem mengimplementasikan sebuah Database View bernama "transaksi_wi"b. 
+
+
+View ini berfungsi untuk mentransformasi data waktu transaksi secara real-time ke format Waktu Indonesia Barat (WIB), sehingga memudahkan proses pelaporan tanpa mengubah data asli pada tabel utama.
 
 
 \subsubsection{Algoritma fungsi}

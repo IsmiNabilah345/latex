@@ -1,7 +1,6 @@
 % BAB 4 - IMPLEMENTASI DAN PENGUJIAN
 
-% Ganti dengan konten dari laporan Word kamu
-
+\vspace{1cm}
 \subsection{Pembahasan Hasil Implementasi}
 \indent
 Tahap implementasi merupakan fase di mana rancangan sistem yang telah dibuat sebelumnya direalisasikan ke dalam bentuk kode program menggunakan bahasa pemrograman Go (Golang) dan antarmuka berbasis web. Pada bagian ini, akan dijelaskan dua aspek utama implementasi, yaitu implementasi antarmuka pengguna (User Interface) untuk memberikan gambaran visual sistem, serta implementasi logika program (backend) yang menjelaskan alur kerja setiap fungsi secara mendetail.
@@ -16,7 +15,12 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 \begin{enumerate}
     \item Halaman Otentikasi (Login)
 
-    [Gambar 4.1.1  1 Halaman Otentikasi (Login)]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_login.png}
+        \caption{Halaman Otentikasi (Login)}
+        \label{fig:halaman_login}
+    \end{figure}
 
 
     \indent
@@ -24,8 +28,12 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 
     \item Dashboard Operasional Utama
 
-    \noindent
-    [Gambar 4.1.1  2 Halaman Dashboard]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_dashboard.png}
+        \caption{Halaman Dashboard}
+        \label{fig:halaman_dashboard}
+    \end{figure}
 
     
     \indent
@@ -33,18 +41,32 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 
     \item Manajemen Pelanggan dan Transaksi
 
-    \noindent
-    [Gambar 4.1.1  3 Halaman Manajemen Pelanggan]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_pelanggan.png}
+        \caption{Halaman Manajemen Pelanggan}
+        \label{fig:halaman_pelanggan}
+    \end{figure}
 
-    [Gambar 4.1.1  4 Halaman Manajemen Transaksi]
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_transaksi.png}
+        \caption{Halaman Manajemen Transaksi}
+        \label{fig:halaman_transaksi}
+    \end{figure}
 
     \indent
     Halaman ini mengimplementasikan fungsi CRUD (Create, Read, Update, Delete) untuk mengelola data pelanggan dan riwayat transaksi. Antarmuka pada bagian ini fokus pada akurasi input data untuk mengurangi risiko kesalahan pencatatan manual yang sering terjadi pada sistem konvensional.
 
     \item Halaman Laporan Keuangan dan Riwayat Transaksi
     
-    \noindent
-    [Gambar 4.1.1  5 Halaman Laporan]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_laporan.png}
+        \caption{Halaman Laporan}
+        \label{fig:halaman_laporan}
+    \end{figure}
 
     \indent
     Halaman ini berfungsi sebagai pusat dokumentasi finansial usaha laundry. Antarmuka laporan dirancang untuk memberikan fleksibilitas kepada pemilik dalam memantau laporan omset secara harian, bulanan, hingga tahunan. Dalam Visual dan Fungsi:
@@ -56,8 +78,12 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 
     \item Halaman Mode Kasir (Point of Sale)
 
-    \noindent
-    [Gambar 4.1.1  6 Halaman Mode Kasir]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/halaman_kasir.png}
+        \caption{Halaman Kasir}
+        \label{fig:halaman_kasir}
+    \end{figure}
 
     \indent
     Mode Kasir (POS) merupakan fitur utama yang digunakan untuk melayani pelanggan secara langsung. Antarmuka ini dirancang dengan mengutamakan kecepatan proses input agar pelayanan tidak terhambat.
@@ -76,11 +102,14 @@ Pada bagian ini akan dijelaskan alur logika dari fungsi-fungsi utama yang menjal
 
 \begin{enumerate}
     \item Modul Webhook Pembayaran (webhook.go)
+
+
     \noindent
     Berikut adalah potongan kode untuk fungsi GopayHandler dan StreamHandler:
 
-    [code ini ada di dalam kotak tabel dengan nama Table 4.1.2  1 Kode Webhook.go]
-    [package main
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+package main
 
 import (
     "encoding/json"
@@ -93,7 +122,10 @@ import (
 
 var pesanChan = make(chan string, 10)
 
-func GopayHandler(w http.ResponseWriter, r *http.Request) {
+func GopayHandler(w http.ResponseWriter, r *http.Request) 
+
+
+{
     bodyBytes, _ := io.ReadAll(r.Body)
 
     var incoming struct {
@@ -107,7 +139,10 @@ func GopayHandler(w http.ResponseWriter, r *http.Request) {
     finalText := incoming.NotificationText
     if match != "" {
         angkaBersih := strings.ReplaceAll(match, ".", "")
-        finalText = "Pembayaran Rp " + angkaBersih + " Berhasil!"
+        finalText = "Pembayaran Rp " + angkaBersih + " 
+        
+        
+        Berhasil!"
     }
 
     pesanChan <- finalText
@@ -116,7 +151,10 @@ func GopayHandler(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(http.StatusOK)
 }
 
-func StreamHandler(w http.ResponseWriter, r *http.Request) {
+func StreamHandler(w http.ResponseWriter, r *http.Request) 
+
+
+{
     w.Header().Set("Content-Type", "text/event-stream")
     w.Header().Set("Cache-Control", "no-cache")
     w.Header().Set("Connection", "keep-alive")
@@ -137,7 +175,8 @@ func StreamHandler(w http.ResponseWriter, r *http.Request) {
         }
     }
 }
-]
+\end{Verbatim}
+
 
 \noindent
 Penjelasan kode:
@@ -159,10 +198,8 @@ Penjelasan kode:
 Pada file main.go, seluruh logika bisnis dan integrasi database Supabase dikelola. Berikut adalah bedah baris kode berdasarkan fungsinya:
 
 
-[kode dengan kotak tabel bernama Table 4.1.2  2 Kode Main.go]
-
-
-[package main
+\begin{Verbatim}[frame=single, fontsize=\small]
+package main
 
 import (
     "bytes"
@@ -195,11 +232,20 @@ type LoginRequest struct {
 
 func enableCORS(w http.ResponseWriter) {
     w.Header().Set("Access-Control-Allow-Origin", "*")
-    w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS")
+    w.Header().Set("Access-Control-Allow-Headers", 
+    
+    
+    "Content-Type, Authorization")
+    w.Header().Set("Access-Control-Allow-Methods", 
+    
+    
+    "GET, POST, PATCH, DELETE, OPTIONS")
 }
 
-func corsMiddleware(next http.HandlerFunc) http.HandlerFunc {
+func corsMiddleware(next http.HandlerFunc) 
+
+
+http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         enableCORS(w)
         if r.Method == http.MethodOptions {
@@ -210,16 +256,31 @@ func corsMiddleware(next http.HandlerFunc) http.HandlerFunc {
     }
 }
 
-func validateToken(r *http.Request) (jwt.MapClaims, error) {
+func validateToken(r *http.Request) (jwt.MapClaims, 
+
+
+error) {
     authHeader := r.Header.Get("Authorization")
     if authHeader == "" {
         return nil, fmt.Errorf("missing token")
     }
 
-    tokenString := strings.TrimPrefix(authHeader, "Bearer ")
-    token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-        if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-            return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+    tokenString := strings.TrimPrefix(authHeader, 
+    
+    
+    "Bearer ")
+    token, err := jwt.Parse(tokenString, func(token *jwt.
+    
+    
+    Token) (interface{}, error) {
+        if _, ok := token.Method.(*jwt.SigningMethodHMAC); 
+        
+        
+        !ok {
+            return nil, fmt.Errorf("unexpected signing 
+            
+            
+            method: %v", token.Header["alg"])
         }
         return []byte(JWTSecret), nil
     })
@@ -228,29 +289,44 @@ func validateToken(r *http.Request) (jwt.MapClaims, error) {
         return nil, err
     }
 
-    if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+    if claims, ok := token.Claims.(jwt.MapClaims); ok && 
+    
+    
+    token.Valid {
         return claims, nil
     }
 
     return nil, fmt.Errorf("invalid token")
 }
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
+func loginHandler(w http.ResponseWriter, r *http.Request) 
+
+
+{
     if r.Method != http.MethodPost {
         w.WriteHeader(http.StatusMethodNotAllowed)
         return
     }
 
     var req LoginRequest
-    if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+    if err := json.NewDecoder(r.Body).Decode(&req); 
+    
+    
+    err != nil {
         w.WriteHeader(http.StatusBadRequest)
-        json.NewEncoder(w).Encode(map[string]string{"error": "invalid body"})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "invalid body"})
         return
     }
 
     // 1. Cari user di tabel public.users
     client := &http.Client{}
-    url := fmt.Sprintf("%s/rest/v1/users?username=eq.%s&select=*", BaseURL, req.Username)
+    url := fmt.Sprintf("%s/rest/v1/users?username=eq.
+    
+    
+    %s&select=*", BaseURL, req.Username)
     reqSup, _ := http.NewRequest("GET", url, nil)
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
@@ -258,7 +334,10 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
     resSup, err := client.Do(reqSup)
     if err != nil {
         w.WriteHeader(http.StatusInternalServerError)
-        json.NewEncoder(w).Encode(map[string]string{"error": "Supabase Connection Error: " + err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "Supabase Connection Error: " + err.Error()})
         return
     }
     defer resSup.Body.Close()
@@ -267,20 +346,32 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
         var supError map[string]interface{}
         json.NewDecoder(resSup.Body).Decode(&supError)
         w.WriteHeader(resSup.StatusCode)
-        json.NewEncoder(w).Encode(map[string]any{"error": "Supabase Error", "details": supError})
+        json.NewEncoder(w).Encode(map[string]any{
+            
+        
+        "error": "Supabase Error", "details": supError})
         return
     }
 
     var users []User
-    if err := json.NewDecoder(resSup.Body).Decode(&users); err != nil {
+    if err := json.NewDecoder(resSup.Body).Decode(&users); 
+    
+    
+    err != nil {
         w.WriteHeader(http.StatusInternalServerError)
-        json.NewEncoder(w).Encode(map[string]string{"error": "Failed to decode users: " + err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "Failed to decode users: " + err.Error()})
         return
     }
 
     if len(users) == 0 {
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": "User tidak ditemukan"})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "User tidak ditemukan"})
         return
     }
 
@@ -295,14 +386,20 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     // 3. Buat JWT
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, 
+    
+    
+    jwt.MapClaims{
         "sub":      user.ID,
         "username": user.Username,
         "role":     user.Role,
-        "exp":      time.Now().Add(time.Hour * 24).Unix(), // 24 jam
+        "exp":      time.Now().Add(time.Hour * 24).Unix(),
     })
 
-    tokenString, err := token.SignedString([]byte(JWTSecret))
+    tokenString, err := token.SignedString([]byte
+    
+    
+    (JWTSecret))
     if err != nil {
         w.WriteHeader(http.StatusInternalServerError)
         return
@@ -315,20 +412,29 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
     })
 }
 
-func registerHandler(w http.ResponseWriter, r *http.Request) {
+func registerHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
 
     claims, err := validateToken(r)
     if err != nil {
         fmt.Println("Gagal Verifikasi Karena:", err)
 
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": err.Error()})
         return
     }
 
     if claims["role"] != "admin" {
         w.WriteHeader(http.StatusForbidden)
-        json.NewEncoder(w).Encode(map[string]string{"error": "Hanya admin yang bisa menambah kasir"})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "Hanya admin yang bisa menambah kasir"})
         return
     }
 
@@ -338,7 +444,10 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
         Nama     string `json:"nama"`
     }
 
-    if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+    if err := json.NewDecoder(r.Body).Decode(&input); 
+    
+    
+    err != nil {
         w.WriteHeader(http.StatusBadRequest)
         return
     }
@@ -360,7 +469,10 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
     client := &http.Client{}
     url := BaseURL + "/rest/v1/users"
-    reqSup, _ := http.NewRequest("POST", url, bytes.NewBuffer(body))
+    reqSup, _ := http.NewRequest("POST", url, bytes.
+    
+    
+    NewBuffer(body))
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
     reqSup.Header.Set("Content-Type", "application/json")
@@ -379,19 +491,27 @@ func registerHandler(w http.ResponseWriter, r *http.Request) {
 
     w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(http.StatusCreated)
-    json.NewEncoder(w).Encode(map[string]string{"message": "Kasir berhasil didaftarkan"})
+    json.NewEncoder(w).Encode(map[string]string{"message": 
+    
+    
+    "Kasir berhasil didaftarkan"})
 }
 
-func getUsersHandler(w http.ResponseWriter, r *http.Request) {
+func getUsersHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil || claims["role"] != "admin" {
         w.WriteHeader(http.StatusForbidden)
-        json.NewEncoder(w).Encode(map[string]string{"error": "Forbidden"})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": "Forbidden"})
         return
     }
 
     client := &http.Client{}
-    // Coba ganti select=* dulu buat ngetes kalau kolom tertentu yang bikin error
     url := BaseURL + "/rest/v1/users?select=*"
 
     reqSup, _ := http.NewRequest("GET", url, nil)
@@ -407,13 +527,15 @@ func getUsersHandler(w http.ResponseWriter, r *http.Request) {
 
     body, _ := io.ReadAll(resSup.Body)
 
-    // Kirim status code yang asli dari Supabase biar keliatan di browser
     w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(resSup.StatusCode)
     w.Write(body)
 }
 
-func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
+func deleteUserHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil || claims["role"] != "admin" {
         w.WriteHeader(http.StatusUnauthorized)
@@ -427,7 +549,10 @@ func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     client := &http.Client{}
-    reqSup, _ := http.NewRequest("DELETE", BaseURL+"/rest/v1/users?id=eq."+id, nil)
+    reqSup, _ := http.NewRequest("DELETE", 
+    
+    
+    BaseURL+"/rest/v1/users?id=eq."+id, nil)
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
 
@@ -435,7 +560,10 @@ func deleteUserHandler(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(resSup.StatusCode)
 }
 
-func updateUserHandler(w http.ResponseWriter, r *http.Request) {
+func updateUserHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil || claims["role"] != "admin" {
         w.WriteHeader(http.StatusUnauthorized)
@@ -448,7 +576,13 @@ func updateUserHandler(w http.ResponseWriter, r *http.Request) {
 
     body, _ := json.Marshal(input)
     client := &http.Client{}
-    reqSup, _ := http.NewRequest("PATCH", BaseURL+"/rest/v1/users?id=eq."+id, bytes.NewBuffer(body))
+    reqSup, _ := http.NewRequest("PATCH", 
+    
+    
+    BaseURL+"/rest/v1/users?id=eq."+id, 
+    
+    
+    bytes.NewBuffer(body))
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
     reqSup.Header.Set("Content-Type", "application/json")
@@ -458,27 +592,45 @@ func updateUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HashPassword(password string) (string, error) {
-    bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+    bytes, err := bcrypt.GenerateFromPassword([]byte
+    
+    
+    (password), bcrypt.DefaultCost)
     return string(bytes), err
 }
 
 func CheckPasswordHash(password, hash string) bool {
-    err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+    err := bcrypt.CompareHashAndPassword([]byte(hash), 
+    
+    
+    []byte(password))
     return err == nil
 }
 
-func dashboardHandler(w http.ResponseWriter, r *http.Request) {
+func dashboardHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": err.Error()})
         return
     }
 
     client := &http.Client{}
     // Pakai Key Anon untuk ambil data transaksi
-    transaksiURL := BaseURL + "/rest/v1/transaksi?select=*&order=created_at.desc"
-    reqTrans, _ := http.NewRequest("GET", transaksiURL, nil)
+    transaksiURL := BaseURL + "/rest/v1/transaksi?
+    
+    
+    select=*&order=created_at.desc"
+    reqTrans, _ := http.NewRequest("GET", transaksiURL, 
+    
+    
+    nil)
     reqTrans.Header.Set("apikey", APIKey)
     reqTrans.Header.Set("Authorization", "Bearer "+APIKey)
 
@@ -491,7 +643,10 @@ func dashboardHandler(w http.ResponseWriter, r *http.Request) {
 
     var transaksiList []map[string]any
     if resTrans.StatusCode == http.StatusOK {
-        json.NewDecoder(resTrans.Body).Decode(&transaksiList)
+        json.NewDecoder(resTrans.Body).Decode
+        
+        
+        (&transaksiList)
     } else {
         transaksiList = []map[string]any{}
     }
@@ -505,11 +660,17 @@ func dashboardHandler(w http.ResponseWriter, r *http.Request) {
     })
 }
 
-func pelangganHandler(w http.ResponseWriter, r *http.Request) {
+func pelangganHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     _, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": err.Error()})
         return
     }
 
@@ -521,7 +682,10 @@ func pelangganHandler(w http.ResponseWriter, r *http.Request) {
 
     filterQuery := ""
     if searchTerm != "" {
-        filterQuery = fmt.Sprintf("&or=(nama.ilike.*%s*,telepon.ilike.*%s*)", searchTerm, searchTerm)
+        filterQuery = fmt.Sprintf("&or=(nama.ilike.*%s*,
+        
+        
+        telepon.ilike.*%s*)", searchTerm, searchTerm)
     }
 
     fullURL := BaseURL + "/rest/v1/pelanggan?select=*"
@@ -540,7 +704,10 @@ func pelangganHandler(w http.ResponseWriter, r *http.Request) {
         fullURL += "&" + query.Encode()
     }
 
-    reqSup, _ := http.NewRequest(r.Method, fullURL, bytes.NewBuffer(bodyBytes))
+    reqSup, _ := http.NewRequest(r.Method, fullURL, 
+    
+    
+    bytes.NewBuffer(bodyBytes))
 
     reqSup.Header.Set("Content-Type", "application/json")
     reqSup.Header.Set("apikey", APIKey)
@@ -552,7 +719,10 @@ func pelangganHandler(w http.ResponseWriter, r *http.Request) {
         }
         from := (page - 1) * limit
         to := from + limit - 1
-        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", from, to))
+        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", 
+        
+        
+        from, to))
     }
 
     client := &http.Client{}
@@ -569,11 +739,17 @@ func pelangganHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(resBody)
 }
 
-func transaksiHandler(w http.ResponseWriter, r *http.Request) {
+func transaksiHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     _, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": err.Error()})
         return
     }
 
@@ -604,7 +780,10 @@ func transaksiHandler(w http.ResponseWriter, r *http.Request) {
     fullURL += "?" + params.Encode()
 
     client := &http.Client{}
-    reqSup, _ := http.NewRequest(r.Method, fullURL, bytes.NewBuffer(bodyBytes))
+    reqSup, _ := http.NewRequest(r.Method, fullURL, 
+    
+    
+    bytes.NewBuffer(bodyBytes))
     reqSup.Header.Set("Content-Type", "application/json")
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
@@ -615,7 +794,10 @@ func transaksiHandler(w http.ResponseWriter, r *http.Request) {
         }
         from := (page - 1) * limit
         to := from + limit - 1
-        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", from, to))
+        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", 
+        
+        
+        from, to))
     }
 
     resSup, err := client.Do(reqSup)
@@ -631,20 +813,38 @@ func transaksiHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(resBody)
 }
 
-func layananHandler(w http.ResponseWriter, r *http.Request) {
+func layananHandler(w http.ResponseWriter, r
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
-        json.NewEncoder(w).Encode(map[string]string{"error": err.Error()})
+        json.NewEncoder(w).Encode(map[string]string{
+            
+        
+        "error": err.Error()})
         return
     }
 
     method := r.Method
-    if method == http.MethodPost || method == http.MethodDelete || method == http.MethodPatch || method == http.MethodPut {
+    if method == http.MethodPost || method == 
+    
+    
+    http.MethodDelete || 
+    
+    
+    method == http.MethodPatch || method == 
+    
+    
+    http.MethodPut {
         role, _ := claims["role"].(string)
         if role != "admin" {
             w.WriteHeader(http.StatusForbidden)
-            json.NewEncoder(w).Encode(map[string]string{"error": "Akses ditolak: Hanya admin"})
+            json.NewEncoder(w).Encode(map[string]string{
+                
+            
+            "error": "Akses ditolak: Hanya admin"})
             return
         }
     }
@@ -675,7 +875,10 @@ func layananHandler(w http.ResponseWriter, r *http.Request) {
     fullURL += "?" + params.Encode()
 
     client := &http.Client{}
-    reqSup, _ := http.NewRequest(method, fullURL, bytes.NewBuffer(bodyBytes))
+    reqSup, _ := http.NewRequest(method, fullURL, 
+    
+    
+    bytes.NewBuffer(bodyBytes))
     reqSup.Header.Set("Content-Type", "application/json")
     reqSup.Header.Set("apikey", APIKey)
     reqSup.Header.Set("Authorization", "Bearer "+APIKey)
@@ -686,7 +889,10 @@ func layananHandler(w http.ResponseWriter, r *http.Request) {
         }
         from := (page - 1) * limit
         to := from + limit - 1
-        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", from, to))
+        reqSup.Header.Set("Range", fmt.Sprintf("%d-%d", 
+        
+
+        from, to))
     }
 
     resSup, err := client.Do(reqSup)
@@ -715,7 +921,10 @@ type Transaksi struct {
     Status           string     `json:"status"`
 }
 
-func laporanHandler(w http.ResponseWriter, r *http.Request) {
+func laporanHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     _, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
@@ -729,10 +938,22 @@ func laporanHandler(w http.ResponseWriter, r *http.Request) {
         transaksiURL := BaseURL +
             "/rest/v1/transaksi_wib" +
             "?status=eq.selesai" +
-            "&select=kode,created_at,selesai_at,berat,total,metode_pembayaran,status,pelanggan(nama),layanan(nama)" +
+            "&select=kode,created_at,selesai_at,berat,
+            
+            
+            total,metode_pembayaran,status,
+            
+            
+            pelanggan(nama),
+            
+            
+            layanan(nama)" +
             "&order=selesai_at.desc"
 
-        req, _ := http.NewRequest("GET", transaksiURL, nil)
+        req, _ := http.NewRequest("GET", transaksiURL, 
+        
+        
+        nil)
         req.Header.Set("apikey", APIKey)
         req.Header.Set("Authorization", "Bearer "+APIKey)
 
@@ -752,17 +973,32 @@ func laporanHandler(w http.ResponseWriter, r *http.Request) {
 
             t.Kode = fmt.Sprint(item["kode"])
             t.Status = fmt.Sprint(item["status"])
-            t.MetodePembayaran = fmt.Sprint(item["metode_pembayaran"])
+            t.MetodePembayaran = fmt.Sprint(item[
+                
+            
+            "metode_pembayaran"])
 
-            if p, ok := item["pelanggan"].(map[string]any); ok {
+            if p, ok := item["pelanggan"].(map[string]any)
+            
+            
+            ; ok {
                 t.PelangganNama = fmt.Sprint(p["nama"])
             }
-            if l, ok := item["layanan"].(map[string]any); ok {
+            if l, ok := item["layanan"].(map[string]any)
+            
+            
+            ; ok {
                 t.LayananNama = fmt.Sprint(l["nama"])
             }
 
-            if s, ok := item["selesai_at"].(string); ok && s != "" {
-                if tm, err := time.Parse(time.RFC3339, s); err == nil {
+            if s, ok := item["selesai_at"].(string); ok 
+            
+            
+            && s != "" {
+                if tm, err := time.Parse(time.RFC3339, s); 
+                
+                
+                err == nil {
                     t.SelesaiAt = &tm
                 }
             }
@@ -775,7 +1011,10 @@ func laporanHandler(w http.ResponseWriter, r *http.Request) {
         }
 
         w.Header().Set("Content-Type", "application/json")
-        json.NewEncoder(w).Encode(map[string]any{"data": trx})
+        json.NewEncoder(w).Encode(map[string]any{"data": 
+        
+        
+        trx})
         return
     }
 
@@ -786,7 +1025,10 @@ func laporanHandler(w http.ResponseWriter, r *http.Request) {
         getSum := func(url string) float64 {
             req, _ := http.NewRequest("GET", url, nil)
             req.Header.Set("apikey", APIKey)
-            req.Header.Set("Authorization", "Bearer "+APIKey)
+            req.Header.Set("Authorization", "Bearer 
+            
+            
+            "+APIKey)
 
             res, err := client.Do(req)
             if err != nil {
@@ -829,7 +1071,10 @@ func laporanHandler(w http.ResponseWriter, r *http.Request) {
     w.WriteHeader(http.StatusBadRequest)
 }
 
-func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
+func laporanExportHandler(w http.ResponseWriter, r 
+
+
+*http.Request) {
     claims, err := validateToken(r)
     if err != nil {
         w.WriteHeader(http.StatusUnauthorized)
@@ -851,16 +1096,31 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
     switch periode {
     case "harian":
         valDate := r.URL.Query().Get("date")
-        tgl, _ := time.ParseInLocation("2006-01-02", valDate, loc)
-        start = time.Date(tgl.Year(), tgl.Month(), tgl.Day(), 0, 0, 0, 0, loc)
-        end = time.Date(tgl.Year(), tgl.Month(), tgl.Day(), 23, 59, 59, 0, loc)
+        tgl, _ := time.ParseInLocation("2006-01-02", 
+        
+
+        valDate, loc)
+        start = time.Date(tgl.Year(), tgl.Month(), 
+        
+        
+        tgl.Day(), 0, 0, 0, 0, loc)
+        end = time.Date(tgl.Year(), tgl.Month(), 
+        
+        
+        tgl.Day(), 23, 59, 59, 0, loc)
 
     case "bulanan":
         y, _ := strconv.Atoi(r.URL.Query().Get("year"))
         m, _ := strconv.Atoi(r.URL.Query().Get("month"))
-        start = time.Date(y, time.Month(m), 1, 0, 0, 0, 0, loc)
+        start = time.Date(y, time.Month(m), 1, 0, 0, 0, 0, 
+        
+        
+        loc)
         end = start.AddDate(0, 1, -1)
-        end = time.Date(end.Year(), end.Month(), end.Day(), 23, 59, 59, 0, loc)
+        end = time.Date(end.Year(), end.Month(), end.Day(), 
+        
+        
+        23, 59, 59, 0, loc)
 
     case "tahunan":
         y, _ := strconv.Atoi(r.URL.Query().Get("year"))
@@ -869,19 +1129,43 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
 
     default:
         now := time.Now().In(loc)
-        start = time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, loc)
+        start = time.Date(now.Year(), now.Month(), 
+        
+        
+        now.Day(), 0, 0, 0, 0, loc)
         end = start.AddDate(0, 0, 1)
     }
 
-    filter := fmt.Sprintf("selesai_tanggal_wib=gte.%s&selesai_tanggal_wib=lte.%s",
+    filter := fmt.Sprintf("selesai_tanggal_wib=gte.%s&
+    
+    
+    selesai_tanggal_wib=lte.%s",
         start.Format("2006-01-02"),
         end.Format("2006-01-02"))
 
     var transaksiURL string
     if tipe == "riwayat" {
-        transaksiURL = BaseURL + "/rest/v1/transaksi_wib?status=eq.selesai&select=kode,selesai_tanggal_wib,berat,total,metode_pembayaran,status,pelanggan(nama),layanan(nama)"
+        transaksiURL = BaseURL + "/rest/v1/transaksi_wib?
+        
+        
+        status=eq.selesai&select=kode,
+        
+        
+        selesai_tanggal_wib,berat,total,
+        
+        
+        metode_pembayaran,status,pelanggan(nama),
+        
+        
+        layanan(nama)"
     } else {
-        transaksiURL = BaseURL + "/rest/v1/transaksi_wib?status=eq.selesai&select=selesai_tanggal_wib,total"
+        transaksiURL = BaseURL + "/rest/v1/transaksi_wib?
+        
+        
+        status=eq.selesai&select=selesai_tanggal_wib,
+        
+        
+        total"
     }
 
     transaksiURL += "&" + filter
@@ -908,26 +1192,44 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
         t := Transaksi{}
         t.Kode = fmt.Sprint(item["kode"])
         t.Status = fmt.Sprint(item["status"])
-        t.MetodePembayaran = fmt.Sprint(item["metode_pembayaran"])
+        t.MetodePembayaran = fmt.Sprint(item[
+            
+        
+        "metode_pembayaran"])
 
-        if p, ok := item["pelanggan"].(map[string]any); ok {
+        if p, ok := item["pelanggan"].(map[string]any); ok 
+        
+        
+        {
             t.PelangganNama = fmt.Sprint(p["nama"])
         }
         if l, ok := item["layanan"].(map[string]any); ok {
             t.LayananNama = fmt.Sprint(l["nama"])
         }
 
-        if s, ok := item["selesai_tanggal_wib"].(string); ok && s != "" {
-            if tm, err := time.Parse(time.RFC3339, s); err == nil {
+        if s, ok := item["selesai_tanggal_wib"].(string); 
+        
+        
+        ok && s != "" {
+            if tm, err := time.Parse(time.RFC3339, s); err 
+            
+            
+            == nil {
                 t.SelesaiAt = &tm
-            } else if tm, err := time.Parse("2006-01-02", s); err == nil {
+            } else if tm, err := time.Parse("2006-01-02", 
+            
+            
+            s); err == nil {
                 t.SelesaiAt = &tm
             }
         }
 
         if total, ok := item["total"].(float64); ok {
             t.Total = total
-        } else if totalStr, ok := item["total"].(string); ok {
+        } else if totalStr, ok := item["total"].
+        
+        
+        (string); ok {
             t.Total, _ = strconv.ParseFloat(totalStr, 64)
         }
 
@@ -947,21 +1249,42 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
     f.SetSheetName("Sheet1", sheet)
 
     headerStyle, _ := f.NewStyle(&excelize.Style{
-        Font:      &excelize.Font{Bold: true, Color: "FFFFFF"},
-        Fill:      excelize.Fill{Type: "pattern", Color: []string{"4B0082"}, Pattern: 1},
-        Alignment: &excelize.Alignment{Horizontal: "center"},
+        Font:      &excelize.Font{Bold: true, Color: 
+        
+        
+        "FFFFFF"},
+        Fill:      excelize.Fill{Type: "pattern", Color: 
+        
+        
+        []string{"4B0082"}, Pattern: 1},
+        Alignment: &excelize.Alignment{Horizontal: 
+        
+        
+        "center"},
     })
     totalStyle, _ := f.NewStyle(&excelize.Style{
         Font: &excelize.Font{Bold: true},
-        Fill: excelize.Fill{Type: "pattern", Color: []string{"E0E0E0"}, Pattern: 1},
+        Fill: excelize.Fill{Type: "pattern", Color: 
+        
+        
+        []string{"E0E0E0"}, Pattern: 1},
     })
 
     if tipe == "riwayat" {
-        headers := []string{"Kode", "Tanggal Selesai", "Pelanggan", "Layanan", "Berat", "Harga Satuan", "Total", "Metode", "Status"}
+        headers := []string{"Kode", "Tanggal Selesai", 
+        
+        
+        "Pelanggan", "Layanan", "Berat", "Harga Satuan",
+        
+        
+        "Total", "Metode", "Status"}
         for i, h := range headers {
             col := string(rune('A' + i))
             f.SetCellValue(sheet, col+"1", h)
-            f.SetCellStyle(sheet, col+"1", col+"1", headerStyle)
+            f.SetCellStyle(sheet, col+"1", col+"1", 
+            
+            
+            headerStyle)
             f.SetColWidth(sheet, col, col, 18)
         }
 
@@ -969,21 +1292,36 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
             row := strconv.Itoa(i + 2)
             f.SetCellValue(sheet, "A"+row, t.Kode)
             if t.SelesaiAt != nil {
-                f.SetCellValue(sheet, "B"+row, t.SelesaiAt.In(loc).Format("02-01-2006"))
+                f.SetCellValue(sheet, "B"+row, 
+                
+                
+                t.SelesaiAt.In(loc).Format("02-01-2006"))
             }
-            f.SetCellValue(sheet, "C"+row, t.PelangganNama)
+            f.SetCellValue(sheet, "C"+row, 
+            
+            
+            t.PelangganNama)
             f.SetCellValue(sheet, "D"+row, t.LayananNama)
             f.SetCellValue(sheet, "E"+row, t.Berat)
             f.SetCellValue(sheet, "F"+row, t.HargaSatuan)
             f.SetCellValue(sheet, "G"+row, t.Total)
-            f.SetCellValue(sheet, "H"+row, t.MetodePembayaran)
+            f.SetCellValue(sheet, "H"+row, 
+            
+            
+            t.MetodePembayaran)
             f.SetCellValue(sheet, "I"+row, t.Status)
         }
 
         lastRow := strconv.Itoa(len(trx) + 2)
         f.SetCellValue(sheet, "F"+lastRow, "TOTAL")
-        f.SetCellValue(sheet, "G"+lastRow, totalOmsetPeriode)
-        f.SetCellStyle(sheet, "F"+lastRow, "G"+lastRow, totalStyle)
+        f.SetCellValue(sheet, "G"+lastRow, 
+        
+        
+        totalOmsetPeriode)
+        f.SetCellStyle(sheet, "F"+lastRow, "G"+lastRow, 
+        
+        
+        totalStyle)
 
     } else {
         f.SetCellValue(sheet, "A1", "Tanggal Selesai")
@@ -994,44 +1332,81 @@ func laporanExportHandler(w http.ResponseWriter, r *http.Request) {
         for i, t := range trx {
             row := strconv.Itoa(i + 2)
             if t.SelesaiAt != nil {
-                f.SetCellValue(sheet, "A"+row, t.SelesaiAt.In(loc).Format("02-01-2006"))
+                f.SetCellValue(sheet, "A"+row, 
+                
+                
+                t.SelesaiAt.In(loc).Format("02-01-2006"))
             }
             f.SetCellValue(sheet, "B"+row, t.Total)
         }
 
         lastRow := strconv.Itoa(len(trx) + 2)
-        f.SetCellValue(sheet, "A"+lastRow, "TOTAL OMSET PERIODE INI")
-        f.SetCellValue(sheet, "B"+lastRow, totalOmsetPeriode)
-        f.SetCellStyle(sheet, "A"+lastRow, "B"+lastRow, totalStyle)
+        f.SetCellValue(sheet, "A"+lastRow, 
+        
+        
+        "TOTAL OMSET PERIODE INI")
+        f.SetCellValue(sheet, "B"+lastRow, 
+        
+        
+        totalOmsetPeriode)
+        f.SetCellStyle(sheet, "A"+lastRow, 
+        
+        
+        "B"+lastRow, totalStyle)
     }
 
     var buf bytes.Buffer
     f.Write(&buf)
 
-    w.Header().Set("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=Laporan_%s_%s.xlsx", tipe, start.Format("2006-01-02")))
+    w.Header().Set("Content-Type", 
+    
+    
+    "application/vnd.openxmlformats-officedocument.
+    
+    
+    spreadsheetml.sheet")
+    w.Header().Set("Content-Disposition", 
+    
+    
+    fmt.Sprintf("attachment; filename=Laporan_%s_%s.xlsx", 
+    
+    
+    tipe, start.Format("2006-01-02")))
     w.Write(buf.Bytes())
 }
 
 func main() {
-    http.HandleFunc("/login", corsMiddleware(loginHandler))
-    http.HandleFunc("/register", corsMiddleware(registerHandler))
-    http.HandleFunc("/users", corsMiddleware(getUsersHandler))
-    http.HandleFunc("/users/delete", corsMiddleware(deleteUserHandler))
-    http.HandleFunc("/users/update", corsMiddleware(updateUserHandler))
-    http.HandleFunc("/dashboard", corsMiddleware(dashboardHandler))
-    http.HandleFunc("/pelanggan", corsMiddleware(pelangganHandler))
-    http.HandleFunc("/transaksi", corsMiddleware(transaksiHandler))
-    http.HandleFunc("/layanan", corsMiddleware(layananHandler))
-    http.HandleFunc("/laporan", corsMiddleware(laporanHandler))
-    http.HandleFunc("/laporan/export", corsMiddleware(laporanExportHandler))
+    http.HandleFunc("/login", corsMiddleware(loginHandler)
+    )
+    http.HandleFunc("/register", corsMiddleware
+    (registerHandler))
+    http.HandleFunc("/users", corsMiddleware
+    (getUsersHandler))
+    http.HandleFunc("/users/delete", corsMiddleware
+    (deleteUserHandler))
+    http.HandleFunc("/users/update", corsMiddleware
+    (updateUserHandler))
+    http.HandleFunc("/dashboard", corsMiddleware
+    (dashboardHandler))
+    http.HandleFunc("/pelanggan", corsMiddleware
+    (pelangganHandler))
+    http.HandleFunc("/transaksi", corsMiddleware
+    (transaksiHandler))
+    http.HandleFunc("/layanan", corsMiddleware
+    (layananHandler))
+    http.HandleFunc("/laporan", corsMiddleware
+    (laporanHandler))
+    http.HandleFunc("/laporan/export", corsMiddleware
+    (laporanExportHandler))
     http.HandleFunc("/api/webhook-gopay", GopayHandler)
     http.HandleFunc("/api/stream", StreamHandler)
 
-    fmt.Println("Server WellClean Laundry jalan di: http://localhost:8080")
+    fmt.Println("Server WellClean Laundry j
+    alan di: http://localhost:8080")
     http.ListenAndServe(":8080", nil)
 }
-]
+\end{Verbatim}
+
 
 \begin{enumerate}[label=\Alph*.]
     \item Fungsi Otentikasi (loginHandler) Fungsi ini menangani proses verifikasi identitas pengguna untuk masuk ke sistem.
@@ -1107,7 +1482,14 @@ Tahap pengujian dilakukan untuk memvalidasi apakah setiap fungsi pada Sistem POS
 \indent
 Pengujian unit dilakukan untuk memvalidasi setiap fungsi secara spesifik. Berikut adalah hasil pengujian menggunakan perintah go tool cover yang menunjukkan persentase baris kode yang berhasil dijalankan dalam skenario uji:
 
-[Gambar 4.2.1  1 Hasil Tes Codecoverage]
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/codecoverage.png}
+\caption{Hasil Pengujian Code Coverage}
+\label{fig:codecoverage}
+\end{figure}
+
+
 \noindent
 Analisis Hasil Pengujian: Berdasarkan data audit pada gambar di atas, dapat disimpulkan beberapa hal sebagai berikut:
 
@@ -1127,7 +1509,12 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 \begin{enumerate}
     \item Pengujian Otentikasi (Login)
 
-    [Gambar 4.2.1  2 Otentikasi Login]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_lgin.png}
+    \caption{Hasil Pengujian Login}
+    \label{fig:login}
+    \end{figure}
 
 
     \indent
@@ -1136,7 +1523,12 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
     \item Pengujian Monitoring Dashboard
 
-    [Gambar 4.2.1  3 Monitoring Dashboard]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_dashboard.png}
+    \caption{Hasil Pengujian Dashboard}
+    \label{fig:dashboard}
+    \end{figure}
 
 
     \indent
@@ -1145,10 +1537,20 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
     \item Pengujian Manajemen Data (Pelanggan & Layanan)
 
-    [Gambar 4.2.1  4 Manajemen Data Pelanggan]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_pelanggan.png}
+    \caption{Hasil Pengujian Pelanggan}
+    \label{fig:pelanggan}
+    \end{figure}
 
 
-    [Gambar 4.2.1  5 Manajemen Data Layanan]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_layanan.png}
+    \caption{Hasil Pengujian Layanan}
+    \label{fig:layanan}
+    \end{figure}
 
 
     \indent
@@ -1157,10 +1559,20 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
     \item Pengujian Transaksi dan Integrasi Payment Gateway
 
-    [Gambar 4.2.1  6 Halaman POS Mode Kasir]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_kasir.png}
+    \caption{Hasil Pengujian POS Mode Kasir}
+    \label{fig:pos}
+    \end{figure}
 
 
-    [Gambar 4.2.1  8 Notifikasi Payment Berhasil]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/pembayaran.png}
+    \caption{Hasil Pengujian Notifikasi Payment}
+    \label{fig:notifikasi}
+    \end{figure}
 
 
     \indent
@@ -1169,13 +1581,28 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
     \item Pengujian Dokumentasi Laporan (Export Excel)
 
-    [Gambar 4.2.1  9 Halaman Manajemen Laporan]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/halaman_laporan.png}
+    \caption{Hasil Pengujian Laporan}
+    \label{fig:laporan}
+    \end{figure}
 
 
-    [Gambar 4.2.1  10 Laporan Riwayat Transaksi Harian]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/transaksi_harian.png}
+    \caption{Hasil Pengujian Laporan Transaksi Harian}
+    \label{fig:transaksi_harian}
+    \end{figure}
 
 
-    [Gambar 4.2.1  11 Laporan Keuangan Harian]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/omset_harian.png}
+    \caption{Hasil Pengujian Laporan Keuangan Harian}
+    \label{fig:omset_harian}
+    \end{figure}
 
     
     \indent
