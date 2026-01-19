@@ -1,6 +1,17 @@
 % BAB 3 - ANALISIS PERANCANGAN
 
 \vspace{1cm}
+\indent
+Penelitian ini menggunakan metode Prototyping, yaitu pendekatan pengembangan sistem yang dilakukan secara iteratif dengan berfokus pada pembuatan versi awal aplikasi (prototype) yang dapat langsung diuji oleh pengguna. Metode ini dipilih karena memungkinkan peneliti memahami kebutuhan pengguna secara lebih mendalam melalui interaksi nyata dengan sistem yang sedang dikembangkan. Dengan adanya prototype, pengguna dapat memberikan masukan konkret terhadap fitur, tampilan, dan alur kerja sistem sehingga proses pengembangan menjadi lebih adaptif dan responsif terhadap kebutuhan riil di lapangan. Objek penelitian adalah sistem Point of Sales (POS) Laundry berbasis web yang dirancang untuk membantu proses pencatatan transaksi, pengelolaan data pelanggan, serta pembuatan laporan keuangan secara otomatis. Adapun subjek penelitian terdiri dari dua peran utama dalam operasional laundry, yaitu pemilik usaha dan kasir. Pemilik berperan sebagai pengambil keputusan sekaligus pengelola sistem secara keseluruhan, sedangkan kasir bertugas menjalankan transaksi harian dan berinteraksi langsung dengan pelanggan.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{images/prototyping.jpg}
+        \caption{Prototyping}
+        \label{fig:prototyping}
+    \end{figure}
+
+
 \subsection{Analisis}
 \subsubsection{Analisis Fungsi Fungsional}
 \indent
@@ -114,4 +125,29 @@ View ini berfungsi untuk mentransformasi data waktu transaksi secara real-time k
 Dalam pengembangan sistem point-of-sale laundry berbasis web ini, algoritma fungsional digunakan untuk menentukan logika bisnis utama, seperti total biaya berdasarkan berat atau kuantitas, pemantauan status cucian secara real-time, dan laporan keuangan otomatis. Algoritma ini digunakan untuk memastikan proses kerja sistematis, akurat, dan meminimalkan kesulitan yang terkait dengan pekerjaan manual.
 
 \subsubsection{Flowchart}
-[gambar]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.2\textwidth]{images/flowchart.png}
+        \caption{Flowchart}
+        \label{fig:flowchart}
+    \end{figure}
+
+
+\indent
+Flowchart pada Gambar diatas merepresentasikan algoritma utama atau logika bisnis yang berjalan di dalam Sistem POS WellClean Laundry. Alur ini menggambarkan urutan eksekusi proses dari awal akses hingga penyelesaian layanan (handover). Berikut adalah rincian tahapan prosesnya:
+
+
+\begin{enumerate}
+    \item Otentikasi Pengguna (Login): Proses dimulai dengan tahapan login. Sistem memvalidasi kredensial pengguna melalui percabangan keputusan (decision node) "Login valid?". Jika data tidak valid, pengguna akan dikembalikan ke halaman login. Jika valid, pengguna diberikan akses menuju Dashboard utama.
+    \item Input Transaksi dan Kalkulasi: Dari Dashboard, pengguna melakukan Input Transaction (memasukkan data pelanggan dan layanan). Sistem kemudian memproses data tersebut pada tahap Calculate Total untuk menghasilkan total biaya yang harus dibayarkan secara otomatis.
+    \item Fleksibilitas Pembayaran (Pay Now vs Pay Later): Sistem dirancang untuk menangani dua skenario pembayaran melalui percabangan "Pay now?":
+    \begin{itemize}
+        \item Pay Now: Pelanggan membayar lunas di awal transaksi.
+        \item Pay Later: Pelanggan memilih untuk membayar nanti (bayar di akhir). Kedua pilihan ini tetap akan meneruskan alur ke tahapan produksi atau Laundry Process.
+    \end{itemize}
+    \item Proses Produksi dan Pengambilan: Setelah proses pencucian selesai (Laundry Process), status cucian diperbarui menjadi Ready for Pickup (Siap Diambil). Pada tahap ini, terdapat mekanisme validasi akhir sebelum barang diserahkan:
+    \begin{itemize}
+        \item Jika status pembayaran masih Not Paid (belum lunas), alur akan dikembalikan ( looping ) ke menu pembayaran untuk menyelesaikan administrasi.
+        \item Jika status sudah Paid (lunas), maka sistem mengizinkan proses Handover (Serah Terima) dan transaksi dinyatakan selesai (Done).
+    \end{itemize}
+\end{enumerate}
