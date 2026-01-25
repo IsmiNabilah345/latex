@@ -1,3 +1,17 @@
+% LEMBAR PENGESAHAN
+
+\clearpage
+\newgeometry{left=1.5cm, right=1.5cm, top=3cm, bottom=3cm}
+
+% Offset footer agar nomor halaman tetap di tengah halaman asli
+\fancyhfoffset[L]{1.25cm}
+\fancyhfoffset[R]{-1.25cm}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{LEMBAR PENGESAHAN}
+
+\vfill
+
 \begin{center}
     {\fontsize{14}{16}\selectfont\bfseries LEMBAR PENGESAHAN}
 \end{center}
@@ -6,8 +20,8 @@
 
 \begin{center}
     {\bfseries\fontsize{12}{14}\selectfont
-    IMPLEMENTASI SISTEM POS BERBASIS WEB UNTUK OPTIMALISASI\\
-    EFISIENSI OPERASIONAL PADA USAHA LAUNDRY}
+    IMPLEMENTASI SISTEM POS BERBASIS WEB UNTUK \\
+    OPTIMALISASI EFISIENSI OPERASIONAL PADA USAHA LAUNDRY}
 \end{center}
 
 \vspace{0.8cm}
@@ -22,7 +36,7 @@
     \vspace{0.3cm}
     \begin{tabular}{lc}
         Alifya Azzahra & 714240011 \\
-        Ismi Nabilah   & 714240056
+        Ismi Nabilah & 714240056
     \end{tabular}
 \end{center}
 
@@ -30,26 +44,42 @@
 
 % --- Bagian Tanda Tangan Dosen (Simetris & Sejajar) ---
 \noindent
-\noindent
-\noindent
-\begin{tabular}{@{}m{0.48\textwidth} @{\extracolsep{\fill}} m{0.48\textwidth}@{}}
-    \centering DOSEN PEMBIMBING & \centering KOORDINATOR PROYEK 2 \tabularnewline
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{center}
+        Dosen Pembimbing
+        \vspace{2.5cm} 
+        
+        Rolly Maulana Awangga, S.T., MT., CAIP, SFPC\\
+        \underline{NIK. 117.86.219}
+    \end{center}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{center}
+        Koordinator Proyek 2
+        \vspace{2.5cm} 
+        
+        Rd. Nuraini Siti Fathonah, S.S., M.Hum., SFPC\\
+        \underline{NIK. 118.72.251}
+    \end{center}
+\end{minipage}
 
-    \vspace{3cm}
-    \vspace{2.5cm} & \vspace{2.5cm} \tabularnewline
-    \centering \underline{Rolly Maulana Awangga,} \par \centering \underline{S.T., MT., CAIP., SFPC} & \centering \underline{Rd. Nuraini Siti Fathonah,} \par \centering \underline{S.S., M.Hum., SFPC} \tabularnewline
-    \centering NIK : 117.86.219 & \centering NIK : 118.72.251 \tabularnewline
-\end{tabular}
-
-\vspace{1.5cm}
+\vspace{2cm}
 
 % --- Bagian Menyetujui ---
 \begin{center}
-    MENYETUJUI,\\
-    KETUA PROGRAM STUDI DIV TEKNIK INFORMATIKA
+    Menyetujui\\
+    Ketua Program Studi DIV Teknik Informatika
     
     \vspace{2.5cm}
     
-    \underline{Roni Andarsyah, S.T., M.Kom., SFPC}\\
-    NIK. 115.88.193
+    Roni Andarsyah, S.T., M.Kom., SFPC\\
+    \underline{NIK. 115.88.193}
 \end{center}
+
+\vfill
+
+% Reset footer offset
+\fancyhfoffset[L]{0cm}
+\fancyhfoffset[R]{0cm}
+\restoregeometry
