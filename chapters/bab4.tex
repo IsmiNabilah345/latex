@@ -337,7 +337,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request)
         json.NewEncoder(w).Encode(map[string]string{
             
         
-        "error": "Supabase Connection Error: " + err.Error()})
+        "error": "Supabase Connection Error: " + err.Error
+        ()})
         return
     }
     defer resSup.Body.Close()
@@ -362,7 +363,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request)
         json.NewEncoder(w).Encode(map[string]string{
             
         
-        "error": "Failed to decode users: " + err.Error()})
+        "error": "Failed to decode users: " + err.Error
+        ()})
         return
     }
 
@@ -1441,7 +1443,7 @@ func main() {
         \item Input: Parameter URL search untuk kata kunci nama/telepon, serta page dan limit.
         \item Proses:
         \begin{itemize}
-            \item Logika fmt.Sprintf("&or=(nama.ilike.*%s*,telepon.ilike.*%s*)", ...) digunakan untuk melakukan pencarian fleksibel di database.
+            \item Logika fmt.Sprintf("&or=(nama.ilike.*\%s*,telepon.ilike.*\%s*)", ...) digunakan untuk melakukan pencarian fleksibel di database.
             \item Baris reqSup.Header.Set("Range", ...) mengatur batasan data yang diambil dari server agar aplikasi tetap ringan (pagination).
         \end{itemize}
         \item Output: Daftar pelanggan dalam format JSON yang sesuai dengan kriteria pencarian.
@@ -1495,10 +1497,10 @@ Analisis Hasil Pengujian: Berdasarkan data audit pada gambar di atas, dapat disi
 
 
 \begin{itemize}
-    \item Fungsi Keamanan: Fungsi enableCORS dan CheckPasswordHash mencapai cakupan 100.0%, yang berarti seluruh skenario keamanan pada baris tersebut telah teruji dengan sukses.
-    \item Logika Pembayaran: Fungsi GopayHandler pada modul webhook mencapai 100.0%, memastikan sistem dapat menangani masukan dari payment gateway tanpa ada baris kode yang terlewati.
-    \item Logika Real-time: Fungsi StreamHandler mencapai 72.7%, yang menunjukkan sebagian besar jalur pengiriman data ke dashboard sudah tervalidasi.
-    \item Efektivitas Sistem: Secara keseluruhan, sistem mencapai total cakupan 15.3%, yang mana fungsi-fungsi inti (vital) sudah mendapatkan pengujian maksimal untuk menghindari kegagalan sistem saat operasional.
+    \item Fungsi Keamanan: Fungsi enableCORS dan CheckPasswordHash mencapai cakupan 100.0\%, yang berarti seluruh skenario keamanan pada baris tersebut telah teruji dengan sukses.
+    \item Logika Pembayaran: Fungsi GopayHandler pada modul webhook mencapai 100.0\%, memastikan sistem dapat menangani masukan dari payment gateway tanpa ada baris kode yang terlewati.
+    \item Logika Real-time: Fungsi StreamHandler mencapai 72.7\%, yang menunjukkan sebagian besar jalur pengiriman data ke dashboard sudah tervalidasi.
+    \item Efektivitas Sistem: Secara keseluruhan, sistem mencapai total cakupan 15.3\%, yang mana fungsi-fungsi inti (vital) sudah mendapatkan pengujian maksimal untuk menghindari kegagalan sistem saat operasional.
 \end{itemize}
 
 \subsubsection{Hasil Pengujian Antarmuka dan Alur Fungsional}
@@ -1518,7 +1520,7 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
 
     \indent
-    Proses pengujian dimulai pada gerbang awal keamanan sistem, yaitu halaman login. Pada tahap ini, admin memasukkan kredensial berupa username dan password yang kemudian diproses oleh sistem melalui fungsi loginHandler yang memiliki cakupan pengujian sebesar 13.0%. Validasi dilakukan dengan mencocokkan input pengguna terhadap data yang tersimpan di database Supabase menggunakan token JWT sebagai standar keamanan akses. Hasil pengujian menunjukkan bahwa sistem mampu mengenali pengguna yang sah dan memberikan otoritas penuh untuk masuk ke dalam dashboard, sementara akses akan ditolak jika kredensial yang dimasukkan tidak valid.
+    Proses pengujian dimulai pada gerbang awal keamanan sistem, yaitu halaman login. Pada tahap ini, admin memasukkan kredensial berupa username dan password yang kemudian diproses oleh sistem melalui fungsi loginHandler yang memiliki cakupan pengujian sebesar 13.0\%. Validasi dilakukan dengan mencocokkan input pengguna terhadap data yang tersimpan di database Supabase menggunakan token JWT sebagai standar keamanan akses. Hasil pengujian menunjukkan bahwa sistem mampu mengenali pengguna yang sah dan memberikan otoritas penuh untuk masuk ke dalam dashboard, sementara akses akan ditolak jika kredensial yang dimasukkan tidak valid.
 
 
     \item Pengujian Monitoring Dashboard
@@ -1532,7 +1534,7 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
 
     \indent
-    Setelah berhasil melakukan proses login, sistem secara otomatis mengarahkan pengguna ke halaman dashboard utama yang berfungsi sebagai pusat informasi operasional. Halaman ini dikelola oleh fungsi dashboardHandler dengan persentase cakupan kode sebesar 23.8%, yang secara dinamis melakukan pengambilan data transaksi terbaru dari server. Berdasarkan pengujian yang dilakukan, dashboard berhasil menampilkan ringkasan statistik bisnis seperti total omset keseluruhan dan omset harian secara akurat, sehingga memudahkan pemilik usaha dalam memantau performa laundry secara real-time.
+    Setelah berhasil melakukan proses login, sistem secara otomatis mengarahkan pengguna ke halaman dashboard utama yang berfungsi sebagai pusat informasi operasional. Halaman ini dikelola oleh fungsi dashboardHandler dengan persentase cakupan kode sebesar 23.8\%, yang secara dinamis melakukan pengambilan data transaksi terbaru dari server. Berdasarkan pengujian yang dilakukan, dashboard berhasil menampilkan ringkasan statistik bisnis seperti total omset keseluruhan dan omset harian secara akurat, sehingga memudahkan pemilik usaha dalam memantau performa laundry secara real-time.
 
 
     \item Pengujian Manajemen Data (Pelanggan & Layanan)
@@ -1554,7 +1556,7 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
 
     \indent
-    Pengujian selanjutnya berfokus pada kemampuan sistem dalam mengelola data master, yaitu informasi pelanggan dan kategori layanan laundry. Dengan memanfaatkan fungsi pelangganHandler yang memiliki coverage 11.9% serta layananHandler sebesar 10.2%, sistem diuji untuk melakukan operasi penambahan, pembaruan, hingga penghapusan data. Hasil pengujian menunjukkan bahwa setiap perubahan data yang dilakukan oleh admin melalui antarmuka web dapat tersimpan secara permanen ke dalam database cloud, dan tabel informasi pada aplikasi diperbarui secara instan untuk mencerminkan kondisi data terkini.
+    Pengujian selanjutnya berfokus pada kemampuan sistem dalam mengelola data master, yaitu informasi pelanggan dan kategori layanan laundry. Dengan memanfaatkan fungsi pelangganHandler yang memiliki coverage 11.9\% serta layananHandler sebesar 10.2\%, sistem diuji untuk melakukan operasi penambahan, pembaruan, hingga penghapusan data. Hasil pengujian menunjukkan bahwa setiap perubahan data yang dilakukan oleh admin melalui antarmuka web dapat tersimpan secara permanen ke dalam database cloud, dan tabel informasi pada aplikasi diperbarui secara instan untuk mencerminkan kondisi data terkini.
 
 
     \item Pengujian Transaksi dan Integrasi Payment Gateway
@@ -1576,7 +1578,7 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
 
     \indent
-    Bagian paling krusial dalam pengujian fungsional ini adalah alur transaksi yang telah terintegrasi dengan metode pembayaran otomatis QRIS. Saat kasir selesai menginput detail cucian dan memilih metode pembayaran QRIS, sistem akan memicu fungsi GopayHandler yang memiliki tingkat validitas logika 100.0% untuk berkomunikasi dengan server payment gateway dan men-generasi kode QR unik. Berdasarkan hasil pengujian nyata, segera setelah pelanggan memindai kode dan menyelesaikan pembayaran melalui aplikasi dompet digital, webhook sistem akan menangkap notifikasi sukses tersebut secara real-time. Sinyal sukses yang diterima oleh fungsi StreamHandler (72.7%) kemudian memberikan perintah kepada antarmuka dashboard untuk menutup jendela (modal) QRIS secara otomatis. Hal ini membuktikan bahwa integrasi pembayaran telah berjalan sinkron, di mana sistem dapat mendeteksi masuknya dana tanpa perlu pengecekan manual, sehingga kasir dapat langsung melanjutkan ke proses pelayanan berikutnya.
+    Bagian paling krusial dalam pengujian fungsional ini adalah alur transaksi yang telah terintegrasi dengan metode pembayaran otomatis QRIS. Saat kasir selesai menginput detail cucian dan memilih metode pembayaran QRIS, sistem akan memicu fungsi GopayHandler yang memiliki tingkat validitas logika 100.0\% untuk berkomunikasi dengan server payment gateway dan men-generasi kode QR unik. Berdasarkan hasil pengujian nyata, segera setelah pelanggan memindai kode dan menyelesaikan pembayaran melalui aplikasi dompet digital, webhook sistem akan menangkap notifikasi sukses tersebut secara real-time. Sinyal sukses yang diterima oleh fungsi StreamHandler (72.7\%) kemudian memberikan perintah kepada antarmuka dashboard untuk menutup jendela (modal) QRIS secara otomatis. Hal ini membuktikan bahwa integrasi pembayaran telah berjalan sinkron, di mana sistem dapat mendeteksi masuknya dana tanpa perlu pengecekan manual, sehingga kasir dapat langsung melanjutkan ke proses pelayanan berikutnya.
 
 
     \item Pengujian Dokumentasi Laporan (Export Excel)
@@ -1606,6 +1608,6 @@ Pengujian ini dilakukan secara manual untuk memastikan setiap elemen antarmuka (
 
     
     \indent
-    Tahap akhir dari rangkaian pengujian fungsional adalah proses dokumentasi dan pembuatan laporan keuangan dalam format fisik. Admin melakukan filter terhadap periode laporan yang diinginkan, kemudian sistem menjalankan fungsi laporanExportHandler dengan cakupan pengujian 3.4% yang bekerja sama dengan library excelize. Pengujian ini berhasil membuktikan bahwa sistem dapat menyusun seluruh data transaksi yang ada di database ke dalam format spreadsheet .xlsx secara rapi dan akurat, yang mencakup detail tanggal, berat, harga satuan, hingga total omset pada periode tersebut.
+    Tahap akhir dari rangkaian pengujian fungsional adalah proses dokumentasi dan pembuatan laporan keuangan dalam format fisik. Admin melakukan filter terhadap periode laporan yang diinginkan, kemudian sistem menjalankan fungsi laporanExportHandler dengan cakupan pengujian 3.4\% yang bekerja sama dengan library excelize. Pengujian ini berhasil membuktikan bahwa sistem dapat menyusun seluruh data transaksi yang ada di database ke dalam format spreadsheet .xlsx secara rapi dan akurat, yang mencakup detail tanggal, berat, harga satuan, hingga total omset pada periode tersebut.
 
 \end{enumerate}
