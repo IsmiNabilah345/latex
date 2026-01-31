@@ -2,30 +2,30 @@
 
 \vspace{1cm}
 \indent
-Penelitian ini menggunakan metode Prototyping, yaitu pendekatan pengembangan sistem yang dilakukan secara iteratif melalui tahapan analisis kebutuhan, perancangan awal, pembangunan prototype, penyempurnaan sistem, hingga implementasi final. Metode ini dipilih karena kebutuhan sistem laundry belum sepenuhnya terdefinisi secara rinci pada tahap awal, sehingga diperlukan proses pengembangan yang fleksibel dan bertahap. Dengan adanya prototype, peneliti dapat menyusun gambaran awal sistem yang selanjutnya dapat disempurnakan agar sesuai dengan kebutuhan operasional dan kebiasaan kerja nyata di lingkungan laundry.
+Penelitian ini menggunakan metode Scrum, sebuah kerangka kerja pengembangan sistem yang bersifat adaptif dan iteratif. Metode ini dipilih karena memungkinkan pengembangan fitur sistem POS Laundry dilakukan melalui siklus pendek yang disebut \textit{Sprint}. Dengan Scrum, setiap fungsionalitas seperti manajemen transaksi dan integrasi pembayaran dapat dikembangkan, diuji, dan dievaluasi secara bertahap dalam waktu yang terukur, sehingga pengembangan sistem menjadi lebih fleksibel dan transparan.
 
 
-Objek penelitian dalam penelitian ini adalah sistem Point of Sales (POS) Laundry berbasis web yang dirancang untuk membantu proses pencatatan transaksi, pengelolaan data pelanggan, serta pembuatan laporan keuangan secara otomatis. Adapun subjek penelitian terdiri dari dua peran utama, yaitu pemilik usaha sebagai pengambil keputusan dan pengelola sistem, serta kasir yang bertugas menjalankan transaksi harian dan berinteraksi langsung dengan pelanggan.
-    
+Adapun dalam tim pengembangan ini, peneliti bertindak sebagai \textit{Development Team} yang merancang sistem, sementara pemilik usaha dan kasir berperan sebagai pengguna yang memberikan umpan balik pada setiap akhir siklus \textit{Sprint} untuk memastikan sistem sesuai dengan kebutuhan operasional di lapangan.
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.3\textwidth]{images/prototyping.jpeg}
-        \caption{Prototyping}
-        \label{fig:prototyping}
-    \end{figure}
+Pemilihan metode \textit{Scrum} didasarkan pada karakteristik pengembangan sistem POS Laundry yang membutuhkan fleksibilitas tinggi, antara lain:
 
+\begin{enumerate}
+    \item Kebutuhan fitur sistem yang dinamis dan dapat berkembang seiring proses pengembangan berlangsung.
+    \item Adanya urgensi untuk melakukan evaluasi berkala terhadap fungsionalitas utama seperti manajemen transaksi dan integrasi pembayaran agar sesuai dengan kebutuhan operasional.
+    \item Struktur metode yang memungkinkan pengembangan dilakukan secara bertahap melalui siklus \textit{sprint}, sehingga setiap hasil pekerjaan dapat langsung diuji dan diperbaiki secara internal.
+\end{enumerate}
 
-\subsection{Analisis}
-\subsubsection{Analisis Fungsi Fungsional}
+\subsection{Analisis (Sprint Planning)}
+\subsubsection{Analisis Kebutuhan Fungsional (Product Backlog)}
 \indent
-Analisis fungsional dilakukan untuk mengidentifikasi kebutuhan utama sistem POS Laundry berbasis web. Sistem ini dirancang agar dapat menggantikan pencatatan manual dengan menyediakan fitur inti sebagai berikut:
+Analisis fungsional dalam metode Scrum disusun ke dalam \textit{Product Backlog} untuk mengidentifikasi kebutuhan utama sistem. Fitur-fitur ini dikerjakan secara bertahap pada setiap \textit{Sprint}:
 
 \begin{itemize}
     \item Transaksi Laundry: mencatat pesanan pelanggan, jenis layanan (cuci, setrika, paket), jumlah, harga, dan status cucian.
-    \item Manajemen Pelanggan: menyimpan data pelanggan, riwayat transaksi, serta mempermudah pencarian informasi.
-    \item Laporan Operasional dan Keuangan: menghasilkan laporan harian, mingguan, dan bulanan terkait jumlah transaksi, pendapatan, serta status cucian.
-    \item Pengelolaan Status Cucian: menampilkan status cucian (proses, selesai, diambil) secara real time.
+    \item Manajemen Pelanggan: menyimpan dan mengelola data pelanggan, riwayat transaksi, serta mempermudah pencarian informasi.
+    \item Laporan Keuangan dan Riwayat Transaksi: menghasilkan laporan harian, mingguan, dan bulanan terkait jumlah transaksi, pendapatan, serta status cucian.
+    \item Manajemen Layanan: menyimpan dan mengelola data layanan yang tersedia.
+    \item Manajemen User: menyimpan dan mengelola data user.
 \end{itemize}
 
 \noindent
@@ -45,9 +45,9 @@ Selain kebutuhan fungsional, sistem juga harus memenuhi kebutuhan non fungsional
 \end{itemize}
 
 
-\subsection{Perancangan}
+\subsection{Perancangan (\textit{Sprint Execution})}
 \indent
-Tahap perancangan merupakan proses penerjemahan hasil analisis kebutuhan ke dalam bentuk rancangan teknis yang akan digunakan sebagai acuan dalam pengembangan sistem POS Laundry berbasis web. Perancangan ini mencakup struktur menu, desain antarmuka pengguna, perancangan basis data, serta logika fungsi yang mendukung operasional laundry secara digital.
+Tahap perancangan merupakan representasi teknis dari \textit{Sprint Backlog} yang akan dikerjakan selama siklus pengembangan. Perancangan ini mencakup struktur menu, desain antarmuka, serta logika fungsi yang mendukung operasional laundry secara digital.
 
 \indent
 Tujuan utama dari perancangan adalah memastikan bahwa sistem yang dibangun sesuai dengan kebutuhan fungsional dan non fungsional yang telah diidentifikasi sebelumnya. Dengan rancangan yang terstruktur, pengembangan sistem dapat dilakukan secara efisien, terarah, dan minim risiko kesalahan implementasi. Setiap komponen yang dirancang baik dari sisi tampilan maupun proses internal harus mampu mendukung pencatatan transaksi, pengelolaan pelanggan, dan penyusunan laporan secara akurat dan real time.
@@ -97,7 +97,7 @@ Desain antarmuka yang dirancang menggunakan prinsip responsif dan sederhana agar
     \item Dashboard Admin: Area admin utama dengan menu navigasi untuk melihat data pengguna, data laundry, dan ringkasan laporan keuangan serta kinerja bisnis.
     \item Dashboard Kasir: Ruang kerja utama untuk Kasir yang menyediakan fitur cepat untuk memasukkan transaksi baru, memeriksa status pelanggan, dan menganalisis data pelanggan.
     \item Halaman Transaksi: Antarmuka untuk menentukan jenis layanan laundry (kiloan/satuan), menghitung total biaya secara otomatis, dan memproses pembayaran.
-    \item truk Transaksi:Tampilan bukti pembayaran yang dapat dicetak atau dikirim secara digital kepada pelanggan berisi detail layanan dan total biaya.
+    \item Struk Transaksi:Tampilan bukti pembayaran yang dapat dicetak atau dikirim secara digital kepada pelanggan berisi detail layanan dan total biaya.
 \end{enumerate}
 
 
@@ -118,7 +118,7 @@ Berdasarkan gambar 3.2.3 diatas, sistem ini menggunakan tiga tabel utama yang sa
     \item Tabel Transaksi. Mencatat setiap pesanan yang dilakukan oleh pelanggan, termasuk total (biaya), status (status pengerjaan/pembayaran), dan berat (untuk laundry kiloan).
 \end{enumerate}
 \indent
-Selain tabel utama, sistem mengimplementasikan sebuah Database View bernama "transaksi_wi"b. 
+Selain tabel utama, sistem mengimplementasikan sebuah Database View bernama "transaksi\_wib". 
 
 
 View ini berfungsi untuk mentransformasi data waktu transaksi secara real-time ke format Waktu Indonesia Barat (WIB), sehingga memudahkan proses pelaporan tanpa mengubah data asli pada tabel utama.
