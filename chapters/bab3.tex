@@ -1,53 +1,64 @@
-% BAB 3 - ANALISIS PERANCANGAN
+% BAB 3 - METODE PENELITIAN
 
 \vspace{1cm}
+\subsection{Jenis dan Metode Penelitian}
 \indent
-Penelitian ini menggunakan metode Scrum, sebuah kerangka kerja pengembangan sistem yang bersifat adaptif dan iteratif. Metode ini dipilih karena memungkinkan pengembangan fitur sistem POS Laundry dilakukan melalui siklus pendek yang disebut \textit{Sprint}. Dengan Scrum, setiap fungsionalitas seperti manajemen transaksi dan integrasi pembayaran dapat dikembangkan, diuji, dan dievaluasi secara bertahap dalam waktu yang terukur, sehingga pengembangan sistem menjadi lebih fleksibel dan transparan.
+Pemilihan metode dan pendekatan penelitian pada pengembangan Sistem POS WellClean Laundry disesuaikan dengan karakteristik permasalahan operasional yang dihadapi oleh UMKM laundry. Permasalahan pencatatan transaksi yang masih dilakukan secara manual menuntut adanya solusi sistem informasi yang terstruktur, adaptif, dan mampu mendukung proses bisnis secara efektif. Oleh karena itu, metode dan pendekatan penelitian yang digunakan diarahkan untuk menghasilkan sistem yang tidak hanya memenuhi kebutuhan fungsional pengguna, tetapi juga mampu diimplementasikan secara optimal dalam lingkungan operasional nyata.
+
+\subsubsection{Jenis Penelitian}
+\indent
+Penelitian ini merupakan penelitian terapan (applied research) yang berfokus pada pengembangan sistem informasi untuk mendukung operasional bisnis laundry. Penelitian terapan dipilih karena tujuan utama penelitian ini bukan hanya menghasilkan kajian teoritis, tetapi juga menghasilkan produk perangkat lunak yang dapat digunakan secara langsung untuk menyelesaikan permasalahan nyata terkait akurasi pencatatan dan pelaporan keuangan di usaha laundry.
+
+Pendekatan yang digunakan dalam penelitian ini adalah rekayasa perangkat lunak, di mana proses penelitian meliputi analisis kebutuhan, perancangan sistem, pengembangan aplikasi menggunakan bahasa pemrograman Go dan basis data Supabase, serta pengujian fungsional sistem.
 
 
-Adapun dalam tim pengembangan ini, peneliti bertindak sebagai \textit{Development Team} yang merancang sistem, sementara pemilik usaha dan kasir berperan sebagai pengguna yang memberikan umpan balik pada setiap akhir siklus \textit{Sprint} untuk memastikan sistem sesuai dengan kebutuhan operasional di lapangan.
+\subsubsection{Metode Penelitian}
+\indent
+Metode penelitian yang digunakan adalah Scrum, yaitu salah satu metode pengembangan perangkat lunak berbasis Agile yang bersifat iteratif dan inkremental. Pemilihan metode Scrum didasarkan pada karakteristik pengembangan sistem POS WellClean Laundry, antara lain:
 
-Pemilihan metode \textit{Scrum} didasarkan pada karakteristik pengembangan sistem POS Laundry yang membutuhkan fleksibilitas tinggi, antara lain:
-
-\begin{enumerate}
+\begin{itemize}
     \item Kebutuhan fitur sistem yang dinamis dan dapat berkembang seiring proses pengembangan berlangsung.
-    \item Adanya urgensi untuk melakukan evaluasi berkala terhadap fungsionalitas utama seperti manajemen transaksi dan integrasi pembayaran agar sesuai dengan kebutuhan operasional.
-    \item Struktur metode yang memungkinkan pengembangan dilakukan secara bertahap melalui siklus \textit{sprint}, sehingga setiap hasil pekerjaan dapat langsung diuji dan diperbaiki secara internal.
-\end{enumerate}
-
-\subsection{Analisis (Sprint Planning)}
-\subsubsection{Analisis Kebutuhan Fungsional (Product Backlog)}
-\indent
-Analisis fungsional dalam metode Scrum disusun ke dalam \textit{Product Backlog} untuk mengidentifikasi kebutuhan utama sistem. Fitur-fitur ini dikerjakan secara bertahap pada setiap \textit{Sprint}:
-
-\begin{itemize}
-    \item Transaksi Laundry: mencatat pesanan pelanggan, jenis layanan (cuci, setrika, paket), jumlah, harga, dan status cucian.
-    \item Manajemen Pelanggan: menyimpan dan mengelola data pelanggan, riwayat transaksi, serta mempermudah pencarian informasi.
-    \item Laporan Keuangan dan Riwayat Transaksi: menghasilkan laporan harian, mingguan, dan bulanan terkait jumlah transaksi, pendapatan, serta status cucian.
-    \item Manajemen Layanan: menyimpan dan mengelola data layanan yang tersedia.
-    \item Manajemen User: menyimpan dan mengelola data user.
+    \item Kebutuhan akan integrasi teknologi yang tepat (seperti endpoint pembayaran otomatis dan laporan real-time).
+    \item Perlunya evaluasi berkala terhadap fungsionalitas utama agar sistem yang dihasilkan benar-benar sesuai dengan kebutuhan operasional kasir dan pemilik usaha di lapangan.
 \end{itemize}
 
-\noindent
-Fungsi fungsi ini mendukung tujuan sistem untuk meningkatkan efisiensi, akurasi pencatatan, dan transparansi layanan.
+Metode Scrum memungkinkan pengembangan sistem dilakukan secara bertahap melalui beberapa siklus pengembangan (iterasi), sehingga setiap tahapan pengembangan dapat dievaluasi dan disempurnakan berdasarkan umpan balik pengguna. Dalam prosesnya, pengerjaan tugas dipantau secara terukur untuk memastikan setiap modul sistem terselesaikan sesuai dengan prioritas kebutuhan pengguna.
 
 
-\subsubsection{Analisis Non Fungsional}
+\subsection{Analisis Kebutuhan Sistem}
 \indent
-Selain kebutuhan fungsional, sistem juga harus memenuhi kebutuhan non fungsional agar dapat digunakan secara optimal:
+Proses analisis dalam penelitian ini dilakukan secara iteratif sesuai dengan kerangka kerja Scrum. Seluruh kebutuhan sistem dikumpulkan dan disusun ke dalam daftar prioritas yang akan dikerjakan secara bertahap. Analisis ini dibagi menjadi dua bagian utama, yaitu kebutuhan fungsional yang mendefinisikan fitur-fitur sistem, dan kebutuhan non-fungsional yang mendefinisikan batasan operasional sistem.
+
+\subsubsection{Analisis Kebutuhan Fungsional}
+\indent
+Analisis fungsional dilakukan untuk mengidentifikasi kebutuhan utama sistem yang akan dikembangkan dalam setiap iterasi. Berdasarkan hasil observasi pada operasional WellClean Laundry, fitur-fitur utama yang dikembangkan adalah:
 
 \begin{itemize}
-    \item Keamanan Data: sistem harus melindungi data pelanggan dan transaksi dari akses tidak sah.
-    \item Kinerja Sistem: aplikasi harus mampu memproses transaksi dengan cepat dan stabil.
-    \item Usability: antarmuka harus sederhana, responsif, dan mudah dipahami oleh karyawan maupun pemilik.
-    \item Portabilitas: sistem berbasis web dapat diakses melalui berbagai perangkat (PC, laptop, smartphone).
-    \item Reliabilitas: sistem harus mampu beroperasi secara konsisten tanpa gangguan yang signifikan.
+    \item Transaksi Laundry: Berfungsi untuk mencatat pesanan pelanggan secara digital, meliputi pemilihan jenis layanan (kiloan, satuan, atau paket), pengisian jumlah, kalkulasi harga otomatis, hingga pembaruan status cucian.
+    \item Manajemen Pelanggan: Berfungsi untuk menyimpan dan mengelola database pelanggan, merekam riwayat transaksi masing-masing pelanggan, serta mempermudah pencarian data untuk layanan pelanggan yang lebih personal.
+    \item Laporan Keuangan dan Riwayat Transaksi: Berfungsi untuk menghasilkan laporan pendapatan secara otomatis dalam periode harian, mingguan, atau bulanan, serta menyajikan visualisasi data transaksi yang telah selesai.
+    \item Manajemen Layanan: Berfungsi untuk mengelola daftar jasa laundry yang tersedia, termasuk pengaturan harga per satuan atau per kilogram yang dapat diperbarui sewaktu-waktu.
+    \item Manajemen User: Berfungsi untuk mengatur hak akses pengguna sistem, yang membedakan otoritas antara Admin (pemilik) dan Kasir (karyawan) demi keamanan data operasional.
+\end{itemize}
+
+Fungsi-fungsi ini dikembangkan untuk mendukung tujuan sistem dalam meningkatkan efisiensi kerja, akurasi pencatatan, dan transparansi layanan kepada pelanggan.
+
+\subsubsection{Analisis Kebutuhan Non-Fungsional}
+\indent
+Selain kebutuhan fungsional, sistem juga harus memenuhi standar kualitas tertentu agar dapat beroperasi secara optimal di lapangan. Kebutuhan non-fungsional tersebut meliputi:
+
+\begin{itemize}
+    \item Keamanan Data: Sistem dilengkapi dengan enkripsi kata sandi dan proteksi database untuk melindungi data pelanggan serta riwayat transaksi dari akses yang tidak sah.
+    \item Kinerja Sistem: Aplikasi dirancang agar mampu memproses transaksi dengan cepat dan tetap stabil meskipun menangani volume data transaksi yang meningkat.
+    \item Usability (Kemudahan Penggunaan): Antarmuka sistem dirancang sederhana dan responsif agar mudah dipahami oleh pengguna tanpa memerlukan pelatihan teknis yang rumit.
+    \item Portabilitas: Sistem berbasis web sehingga dapat diakses secara fleksibel melalui berbagai perangkat seperti PC, laptop, maupun smartphone melalui peramban (browser).
+    \item Reliabilitas: Sistem harus memiliki tingkat ketersediaan yang tinggi agar operasional laundry dapat terus berjalan tanpa gangguan teknis yang signifikan pada database.
 \end{itemize}
 
 
-\subsection{Perancangan (\textit{Sprint Execution})}
+\subsection{Perancangan dan Implementasi}
 \indent
-Tahap perancangan merupakan representasi teknis dari \textit{Sprint Backlog} yang akan dikerjakan selama siklus pengembangan. Perancangan ini mencakup struktur menu, desain antarmuka, serta logika fungsi yang mendukung operasional laundry secara digital.
+Tahap perancangan merupakan representasi teknis dari fitur-fitur yang telah diprioritaskan. Dalam proses pengerjaannya, peneliti menggunakan bantuan platform manajemen tugas digital untuk membagi setiap fungsi menjadi unit kerja yang lebih kecil. Hal ini dilakukan agar setiap siklus pengembangan dapat terpantau dengan jelas, mulai dari tahap pengerjaan basis data hingga integrasi antarmuka. Perancangan ini mencakup struktur menu, desain antarmuka, serta logika fungsi yang mendukung operasional laundry secara digital.
 
 \indent
 Tujuan utama dari perancangan adalah memastikan bahwa sistem yang dibangun sesuai dengan kebutuhan fungsional dan non fungsional yang telah diidentifikasi sebelumnya. Dengan rancangan yang terstruktur, pengembangan sistem dapat dilakukan secara efisien, terarah, dan minim risiko kesalahan implementasi. Setiap komponen yang dirancang baik dari sisi tampilan maupun proses internal harus mampu mendukung pencatatan transaksi, pengelolaan pelanggan, dan penyusunan laporan secara akurat dan real time.
