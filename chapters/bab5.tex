@@ -3,13 +3,13 @@
 \vspace{1cm}
 \subsection{Kesimpulan}
 \indent
-Setelah melalui tahapan perancangan, implementasi, hingga pengujian terhadap Sistem Point of Sale (POS) WellClean Laundry, maka dapat ditarik beberapa kesimpulan utama:
-
+Setelah melalui tahapan perancangan, implementasi, hingga pengujian terhadap Sistem Point of Sale (POS) WellClean Laundry, maka dapat ditarik beberapa kesimpulan utama sebagai jawaban atas pertanyaan penelitian:
 
 \begin{enumerate}
-    \item Aplikasi telah berhasil diimplementasikan dengan menggunakan bahasa pemrograman Go dan basis data Supabase, yang memungkinkan pengelolaan data operasional laundry dilakukan secara terpusat dan aman.
-    \item Seluruh fitur utama, mencakup manajemen data pelanggan, kategori layanan, pencatatan transaksi, hingga visualisasi laporan keuangan, telah dinyatakan berfungsi sesuai dengan kebutuhan pengguna.
-    \item Berdasarkan hasil audit code coverage, fungsi-fungsi krusial yang menangani keamanan sistem (seperti enkripsi kata sandi) dan integrasi pembayaran otomatis (melalui webhook GoPay) telah mencapai tingkat validasi 100%, sehingga risiko kegagalan logika pada bagian tersebut sangat minim.
+    \item Berdasarkan RQ 1, aplikasi telah berhasil diimplementasikan dengan menggunakan bahasa pemrograman Go dan basis data Supabase. Hal ini memungkinkan transformasi pencatatan konvensional menjadi pengelolaan data operasional laundry yang terpusat, aman, dan dapat diakses secara \textit{real-time}.
+    \item Berdasarkan RQ 2, sistem telah berhasil mengintegrasikan fitur automasi verifikasi pembayaran QRIS melalui mekanisme integrasi endpoint notifikasi. Fitur ini memberikan pembaruan signifikan pada proses bisnis dengan memungkinkan validasi transaksi secara otomatis tanpa perlu pengecekan mutasi secara konvensional oleh kasir.
+    \item Berdasarkan RQ 3, hasil pengujian unit menggunakan \textit{go tool cover} menunjukkan bahwa fungsi-fungsi krusial seperti keamanan (\textit{hashing password}) dan logika pembayaran telah mencapai tingkat \textit{statement coverage} sebesar 100\%. Hal ini menjamin keandalan sistem dalam menangani proses-proses kritis.
+    \item {Berdasarkan RQ 4}, penerapan metode \textit{Scrum} telah membantu proses pengembangan sistem menjadi lebih terstruktur dan adaptif, sehingga seluruh fitur utama mulai dari manajemen pelanggan hingga laporan keuangan dapat diselesaikan sesuai dengan kebutuhan operasional pengguna.
 \end{enumerate} 
 
 \vspace{0.5cm}
