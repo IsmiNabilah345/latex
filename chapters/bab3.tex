@@ -74,29 +74,7 @@ Tujuan utama dari perancangan adalah memastikan bahwa sistem yang dibangun sesua
 
 
 \indent
-Berdasarkan gambar 3.2.1 diatas, struktur Menu yang tersedia pada aplikasi adalah:
-
-
-\begin{enumerate}
-    \item Admin:
-    \begin{enumerate}
-        \item Login
-        \item Mengelola Data Pelanggan
-        \item Mengelola Data User
-        \item Mengelola Data Layanan
-        \item Mengelola Data Transaksi
-        \item Mengelola Data Keuangan
-    \end{enumerate}
-
-
-    \item Kasir:
-    \begin{enumerate}
-        \item Login
-        \item Mengelola Data Pelanggan
-        \item Mengelola Data Transaksi
-    \end{enumerate}
-    
-\end{enumerate}
+Berdasarkan Gambar 3.3.1, struktur menu pada aplikasi terbagi menjadi dua hak akses utama. \textbf{Admin} memiliki otoritas penuh untuk melakukan \textit{login}, mengelola data pelanggan, data \textit{user}, data layanan, serta memantau seluruh transaksi dan laporan keuangan. Sementara itu, aktor \textbf{Kasir} memiliki akses yang lebih spesifik yang mencakup proses \textit{login}, pengelolaan data pelanggan, serta pencatatan data transaksi operasional.
 
 
 \subsubsection{Antarmuka (UI)}
@@ -120,19 +98,9 @@ Desain antarmuka yang dirancang menggunakan prinsip responsif dan sederhana agar
         \label{fig:database}
 \end{figure}
 
+
 \indent
-Berdasarkan gambar 3.2.3 diatas, sistem ini menggunakan tiga tabel utama yang saling berelasi untuk mengelola data operasional laundry:
-
-\begin{enumerate}
-    \item Tabel Pelanggan. Digunakan untuk menyimpan informasi identitas pelanggan seperti nama, alamat, telepon.
-    \item Tabel Layanan. Berisi daftar jenis jasa laundry yang ditawarkan, termasuk informasi seperti nama layanan, harga, satuan (misalnya per kg atau per potong), dan deskripsi.
-    \item Tabel Transaksi. Mencatat setiap pesanan yang dilakukan oleh pelanggan, termasuk total (biaya), status (status pengerjaan/pembayaran), dan berat (untuk laundry kiloan).
-\end{enumerate}
-\indent
-Selain tabel utama, sistem mengimplementasikan sebuah Database View bernama "transaksi\_wib". 
-
-
-View ini berfungsi untuk mentransformasi data waktu transaksi secara real-time ke format Waktu Indonesia Barat (WIB), sehingga memudahkan proses pelaporan tanpa mengubah data asli pada tabel utama.
+Berdasarkan Gambar 3.2, sistem ini menggunakan tiga tabel utama yang saling berelasi untuk mengelola data operasional laundry secara terintegrasi. \textbf{Tabel Pelanggan} berfungsi menyimpan informasi identitas seperti nama, alamat, dan nomor telepon, sementara \textbf{Tabel Layanan} mengelola daftar jasa laundry yang mencakup nama layanan, harga, satuan, serta deskripsi. Seluruh aktivitas pesanan dicatat dalam \textbf{Tabel Transaksi} yang mencakup data total biaya, status pengerjaan, status pembayaran, hingga berat cucian. Selain itu, sistem mengimplementasikan \textit{Database View} bernama \texttt{transaksi\_wib} yang berfungsi mentransformasi data waktu transaksi ke format Waktu Indonesia Barat (WIB) secara \textit{real-time}, sehingga memudahkan proses pelaporan tanpa mengubah integritas data asli pada tabel utama.
 
 
 \subsubsection{Algoritma fungsi}
@@ -149,20 +117,4 @@ Dalam pengembangan sistem point-of-sale laundry berbasis web ini, algoritma fung
 
 
 \indent
-Flowchart pada Gambar diatas merepresentasikan algoritma utama atau logika bisnis yang berjalan di dalam Sistem POS WellClean Laundry. Alur ini menggambarkan urutan eksekusi proses dari awal akses hingga penyelesaian layanan (handover). Berikut adalah rincian tahapan prosesnya:
-
-
-\begin{enumerate}
-    \item Otentikasi Pengguna (Login): Proses dimulai dengan tahapan login. Sistem memvalidasi kredensial pengguna melalui percabangan keputusan (decision node) "Login valid?". Jika data tidak valid, pengguna akan dikembalikan ke halaman login. Jika valid, pengguna diberikan akses menuju Dashboard utama.
-    \item Input Transaksi dan Kalkulasi: Dari Dashboard, pengguna melakukan Input Transaction (memasukkan data pelanggan dan layanan). Sistem kemudian memproses data tersebut pada tahap Calculate Total untuk menghasilkan total biaya yang harus dibayarkan secara otomatis.
-    \item Fleksibilitas Pembayaran (Pay Now vs Pay Later): Sistem dirancang untuk menangani dua skenario pembayaran melalui percabangan "Pay now?":
-    \begin{itemize}
-        \item Pay Now: Pelanggan membayar lunas di awal transaksi.
-        \item Pay Later: Pelanggan memilih untuk membayar nanti (bayar di akhir). Kedua pilihan ini tetap akan meneruskan alur ke tahapan produksi atau Laundry Process.
-    \end{itemize}
-    \item Proses Produksi dan Pengambilan: Setelah proses pencucian selesai (Laundry Process), status cucian diperbarui menjadi Ready for Pickup (Siap Diambil). Pada tahap ini, terdapat mekanisme validasi akhir sebelum barang diserahkan:
-    \begin{itemize}
-        \item Jika status pembayaran masih Not Paid (belum lunas), alur akan dikembalikan ( looping ) ke menu pembayaran untuk menyelesaikan administrasi.
-        \item Jika status sudah Paid (lunas), maka sistem mengizinkan proses Handover (Serah Terima) dan transaksi dinyatakan selesai (Done).
-    \end{itemize}
-\end{enumerate}
+\textit{Flowchart} pada Gambar 3.3 merepresentasikan algoritma utama atau logika bisnis dalam Sistem POS \textit{WellClean Laundry}, yang menggambarkan urutan eksekusi proses mulai dari akses awal hingga penyelesaian layanan (\textit{handover}). Proses dimulai dengan otentikasi pengguna melalui tahapan \textit{login}, di mana sistem akan memvalidasi kredensial melalui percabangan keputusan. Jika data valid, pengguna diarahkan ke \textit{dashboard} utama untuk melakukan \textit{input transaction} yang mencakup data pelanggan serta layanan, diikuti dengan proses \textit{calculate total} biaya secara otomatis. Sistem menyediakan fleksibilitas pembayaran melalui opsi \textit{pay now} untuk pelunasan di awal atau \textit{pay later} untuk pembayaran di akhir, di mana kedua skenario tersebut akan meneruskan alur ke tahap produksi (\textit{laundry process}). Setelah pengerjaan selesai, status diperbarui menjadi \textit{ready for pickup}. Pada tahap ini, terdapat mekanisme validasi akhir; jika status pembayaran masih belum lunas (\textit{not paid}), alur akan kembali ke menu pembayaran, namun jika sudah lunas (\textit{paid}), sistem mengizinkan proses \textit{handover} hingga transaksi dinyatakan selesai (\textit{done}).

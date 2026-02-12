@@ -24,7 +24,7 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 
 
     \indent
-    Halaman ini merupakan pintu masuk utama sekaligus garda depan keamanan sistem. Secara visual, halaman ini menyediakan form input untuk kredensial pengguna. Secara sistem, halaman ini berfungsi untuk memvalidasi identitas pengguna melalui pencocokan data yang ada pada database dengan teknik enkripsi tertentu guna menjaga kerahasiaan informasi.
+    Pada Gambar 4.4, ditampilkan antarmuka halaman \textit{login} yang merupakan pintu masuk utama sekaligus garda depan keamanan sistem. Secara visual, halaman ini menyediakan \textit{form input} untuk kredensial pengguna. Secara sistem, fitur ini berfungsi untuk memvalidasi identitas pengguna melalui pencocokan data pada \textit{database} dengan teknik enkripsi tertentu guna menjaga kerahasiaan informasi.
 
     \item Dashboard Operasional Utama
 
@@ -37,7 +37,8 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
 
     
     \indent
-    Dashboard ini merupakan pusat informasi dari seluruh aktivitas laundry. Implementasi halaman ini mencakup penyajian data transaksi harian, status pengerjaan cucian (Proses dan Selesai), total orderan, hingga total jumlah pendapatan. Informasi yang disajikan bersifat aktual (real-time) sehingga pemilik usaha dapat melakukan pemantauan operasional secara efisien tanpa harus melakukan pembaruan halaman secara manual.
+    Visualisasi antarmuka pada Gambar 4.5 menunjukkan halaman \textit{dashboard} yang merupakan pusat informasi dari seluruh aktivitas operasional \textit{laundry}. Implementasi halaman ini mencakup penyajian data transaksi harian, status pengerjaan cucian (Proses dan Selesai), total orderan, hingga akumulasi pendapatan. Informasi yang disajikan bersifat aktual (\textit{real-time}) sehingga pemilik usaha dapat melakukan pemantauan operasional secara efisien tanpa harus melakukan pembaruan data secara konvensional.
+    
 
     \item Manajemen Pelanggan dan Transaksi
 
@@ -56,8 +57,10 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
         \label{fig:halaman_transaksi}
     \end{figure}
 
+    
     \indent
-    Halaman ini mengimplementasikan fungsi CRUD (Create, Read, Update, Delete) untuk mengelola data pelanggan dan riwayat transaksi. Antarmuka pada bagian ini fokus pada akurasi input data untuk mengurangi risiko kesalahan pencatatan yang sering terjadi pada sistem konvensional.
+    Implementasi antarmuka pada Gambar 4.6 dan Gambar 4.7 menunjukkan halaman pengelolaan data pelanggan serta riwayat transaksi yang mengintegrasikan fungsi CRUD (\textit{Create, Read, Update, Delete}). Secara fungsional, bagian ini fokus pada akurasi input data guna meminimalisir risiko kesalahan pencatatan yang sering terjadi pada sistem konvensional. Melalui antarmuka ini, pengguna dapat memantau profil pelanggan sekaligus melacak jejak transaksi secara terorganisir dalam satu kesatuan sistem.
+
 
     \item Halaman Laporan Keuangan dan Riwayat Transaksi
     
@@ -68,13 +71,10 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
         \label{fig:halaman_laporan}
     \end{figure}
 
-    \indent
-    Halaman ini berfungsi sebagai pusat dokumentasi finansial usaha laundry. Antarmuka laporan dirancang untuk memberikan fleksibilitas kepada pemilik dalam memantau laporan omset secara harian, bulanan, hingga tahunan. Dalam Visual dan Fungsi:
 
-    \begin{itemize}
-        \item Visual: Terdapat kartu ringkasan (summary cards) yang menampilkan total omset keseluruhan dan omset spesifik pada hari berjalan (seperti contoh pada Gambar 4.1.5 yang menunjukkan Omset Hari Ini sebesar Rp 1.250.000).
-        \item Fungsi: Implementasi pada halaman ini memungkinkan pengguna untuk melihat tabel riwayat transaksi terakhir secara mendetail. Selain itu, terdapat tombol filtrasi laporan yang terhubung langsung dengan modul pengunduhan data (Export Excel).
-    \end{itemize}
+    \indent
+    Visualisasi antarmuka pada Gambar 4.8 menampilkan halaman laporan keuangan yang berfungsi sebagai pusat dokumentasi finansial usaha \textit{laundry}. Secara visual, halaman ini dilengkapi dengan kartu ringkasan (\textit{summary cards}) yang menyajikan total omzet keseluruhan serta omzet spesifik pada hari berjalan secara aktual. Secara fungsional, antarmuka ini memberikan fleksibilitas kepada pemilik dalam memantau laporan omzet harian, bulanan, hingga tahunan melalui tabel riwayat transaksi yang mendetail. Selain itu, sistem mengimplementasikan fitur filtrasi laporan yang terhubung langsung dengan modul pengunduhan data (\textit{Export Excel}) guna mempermudah pengarsipan dan pengambilan keputusan keuangan yang lebih akurat.
+
 
     \item Halaman Mode Kasir (Point of Sale)
 
@@ -86,12 +86,7 @@ Implementasi antarmuka pada Sistem POS Laundry ini dirancang dengan prinsip usab
     \end{figure}
 
     \indent
-    Mode Kasir (POS) merupakan fitur utama yang digunakan untuk melayani pelanggan secara langsung. Antarmuka ini dirancang dengan mengutamakan kecepatan proses input agar pelayanan tidak terhambat.
-
-    \begin{itemize}
-        \item Fungsi: Pada halaman ini, karyawan dapat memilih jenis layanan (laundry kiloan/satuan), memasukkan data pelanggan, dan menentukan metode pembayaran.
-        \item Output: Setiap transaksi yang diselesaikan melalui Mode Kasir akan secara otomatis memperbarui saldo omset di halaman laporan dan memicu pengiriman data melalui sistem SSE (Server-Sent Events) ke dashboard utama.
-    \end{itemize}
+    Halaman antarmuka Mode Kasir (\textit{Point of Sale}) pada Gambar 4.9 merupakan fitur utama yang dirancang untuk mengoptimalkan kecepatan proses pelayanan pelanggan secara langsung. Secara fungsional, halaman ini memungkinkan karyawan untuk memilih jenis layanan, baik kiloan maupun satuan, serta mengelola data pelanggan dan metode pembayaran dalam satu alur yang terintegrasi. \textit{Output} dari setiap transaksi yang diselesaikan melalui fitur ini akan secara otomatis memperbarui saldo omzet pada laporan keuangan dan memicu sinkronisasi data secara \textit{real-time} menggunakan teknologi \textit{Server-Sent Events} (SSE) ke \textit{dashboard} utama.
 
 \end{enumerate}
 
@@ -107,7 +102,7 @@ Pada bagian ini akan dijelaskan alur logika dari fungsi-fungsi utama yang menjal
     \noindent
     Berikut adalah potongan kode untuk fungsi GopayHandler dan StreamHandler:
 
-
+\begin{spacing}{1}
 \begin{Verbatim}[frame=single, fontsize=\small]
 package main
 
@@ -197,7 +192,7 @@ Penjelasan kode:
 \noindent
 Pada file main.go, seluruh logika bisnis dan integrasi database Supabase dikelola. Berikut adalah bedah baris kode berdasarkan fungsinya:
 
-
+\begin{spacing}{1}
 \begin{Verbatim}[frame=single, fontsize=\small]
 package main
 
